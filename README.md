@@ -1,3 +1,1507 @@
-# ai-pm-playbook
-The AI PM Playbook — DARE &amp; ALIGN frameworks for product managers entering AI
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The AI PM Playbook — From Zero to AI Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181c24;
+  --border: #1e2330;
+  --border2: #2a3040;
+  --text: #c8d0e0;
+  --text-dim: #5a6480;
+  --text-bright: #e8edf8;
+  --green: #00d97e;
+  --green-dim: #003d22;
+  --blue: #3d8ef0;
+  --blue-dim: #0d1e40;
+  --amber: #f0a030;
+  --amber-dim: #301e00;
+  --red: #f05050;
+  --red-dim: #300a0a;
+  --purple: #a060f0;
+  --purple-dim: #1a0a30;
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --body: 'Lora', serif;
+}
 
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* ── LAYOUT ── */
+.shell { display: flex; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sidebar-logo .mark::before {
+  content: '';
+  display: block;
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+.sidebar-logo h1 {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1.3;
+}
+.sidebar-logo .version {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.sidebar-section {
+  padding: 16px 12px 8px;
+}
+.sidebar-section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0 8px;
+  margin-bottom: 4px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.nav-item:hover { background: var(--surface2); color: var(--text); border-color: var(--border); }
+.nav-item.active { background: var(--green-dim); color: var(--green); border-color: rgba(0,217,126,0.2); }
+.nav-item .num {
+  font-size: 9px;
+  opacity: 0.5;
+  flex-shrink: 0;
+  width: 18px;
+}
+.nav-item.active .num { opacity: 1; }
+.nav-badge {
+  margin-left: auto;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: var(--surface2);
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.nav-item.active .nav-badge { background: rgba(0,217,126,0.15); color: var(--green); }
+
+.sidebar-paths {
+  padding: 12px;
+  margin: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+}
+.path-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.path-btn {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  margin-bottom: 6px;
+}
+.path-btn:last-child { margin-bottom: 0; }
+.path-btn:hover { border-color: var(--blue); color: var(--blue); }
+.path-btn.active-path { border-color: var(--blue); background: var(--blue-dim); color: var(--blue); }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.progress-bar-wrap {
+  background: var(--surface2);
+  border-radius: 4px;
+  height: 4px;
+  margin: 6px 0;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--green);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* ── MAIN ── */
+.main {
+  margin-left: 280px;
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* ── CHAPTER ── */
+.chapter { display: none; }
+.chapter.active { display: block; }
+
+/* ── README HERO ── */
+.readme-hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 64px 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.readme-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,217,126,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.readme-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 20%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(61,142,240,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.hero-tag.green { color: var(--green); border-color: rgba(0,217,126,0.3); background: var(--green-dim); }
+.hero-tag.blue  { color: var(--blue);  border-color: rgba(61,142,240,0.3);  background: var(--blue-dim);  }
+.readme-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.readme-hero h1 .accent { color: var(--green); }
+.readme-hero .subtitle {
+  font-size: 18px;
+  color: var(--text);
+  max-width: 600px;
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.hero-stat {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.hero-stat strong {
+  display: block;
+  font-size: 22px;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+
+/* PATH CARDS */
+.path-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 40px 64px;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 700px) { .path-cards { grid-template-columns: 1fr; } }
+.path-card {
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 28px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.path-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.path-card.trad::before { background: linear-gradient(90deg, var(--blue), var(--purple)); }
+.path-card.new::before  { background: linear-gradient(90deg, var(--green), var(--blue)); }
+.path-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.path-card h3 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+}
+.path-card .path-for {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.path-card.trad .path-for { color: var(--blue); }
+.path-card.new  .path-for { color: var(--green); }
+.path-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin-bottom: 16px; }
+.path-card .path-btn-go {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.path-card.trad .path-btn-go { color: var(--blue); border-color: rgba(61,142,240,0.4); }
+.path-card.new  .path-btn-go { color: var(--green); border-color: rgba(0,217,126,0.4); }
+.path-card.trad .path-btn-go:hover { background: var(--blue-dim); }
+.path-card.new  .path-btn-go:hover { background: var(--green-dim); }
+
+/* TABLE OF CONTENTS */
+.toc-section {
+  padding: 40px 64px;
+  border-bottom: 1px solid var(--border);
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.section-header h2 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+.mono-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 3px 8px;
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--surface);
+}
+.toc-item:hover { border-color: var(--green); background: rgba(0,217,126,0.03); }
+.toc-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.toc-text .title {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+.toc-text .desc { font-size: 12px; color: var(--text-dim); font-family: var(--mono); line-height: 1.4; }
+
+/* ── CHAPTER CONTENT ── */
+.chapter-body {
+  padding: 56px 64px;
+  max-width: 900px;
+}
+@media (max-width: 768px) {
+  .chapter-body { padding: 32px 24px; }
+  .readme-hero { padding: 40px 24px 32px; }
+  .path-cards { padding: 24px; }
+  .toc-section { padding: 32px 24px; }
+}
+.chapter-header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-eyebrow::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--green);
+}
+.chapter-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.chapter-desc {
+  font-size: 17px;
+  color: var(--text);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* CONTENT ELEMENTS */
+h3.section-title {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 40px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h3.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+h4.sub-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-bright);
+  letter-spacing: 0.05em;
+  margin: 24px 0 10px;
+  text-transform: uppercase;
+}
+p { margin-bottom: 16px; color: var(--text); }
+p strong { color: var(--text-bright); }
+
+/* CODE BLOCK */
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin: 20px 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--text);
+  overflow-x: auto;
+}
+.code-block .comment { color: var(--text-dim); font-style: italic; }
+.code-block .key { color: var(--blue); }
+.code-block .val { color: var(--green); }
+.code-block .str { color: var(--amber); }
+.code-block .tag { color: var(--purple); }
+
+/* CALLOUT */
+.callout {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 20px 0;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.callout.green { border-color: rgba(0,217,126,0.3); background: var(--green-dim); }
+.callout.blue  { border-color: rgba(61,142,240,0.3);  background: var(--blue-dim);  }
+.callout.amber { border-color: rgba(240,160,48,0.3);  background: var(--amber-dim); }
+.callout.red   { border-color: rgba(240,80,80,0.3);   background: var(--red-dim);   }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.callout-body { font-size: 14px; line-height: 1.6; }
+.callout-body strong { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.callout.green .callout-body strong { color: var(--green); }
+.callout.blue  .callout-body strong { color: var(--blue);  }
+.callout.amber .callout-body strong { color: var(--amber); }
+.callout.red   .callout-body strong { color: var(--red);   }
+
+/* CHECKLIST */
+.checklist {
+  list-style: none;
+  margin: 16px 0;
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14.5px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-box {
+  width: 16px; height: 16px;
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.checklist li.done .check-box {
+  background: var(--green);
+  border-color: var(--green);
+}
+.checklist li.done .check-box::after { content: '✓'; font-size: 10px; color: #000; font-weight: bold; }
+.checklist li.done .check-label { color: var(--text-dim); text-decoration: line-through; }
+.check-label { flex: 1; }
+.check-label strong { color: var(--text-bright); display: block; font-size: 14px; }
+.check-label span { color: var(--text-dim); font-size: 13px; font-family: var(--mono); }
+
+/* CONCEPT CARD */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.concept-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  transition: border-color 0.15s;
+}
+.concept-card:hover { border-color: var(--border2); }
+.concept-card .c-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.concept-card.must .c-tag   { color: var(--red);    background: var(--red-dim);    border: 1px solid rgba(240,80,80,0.3);   }
+.concept-card.know .c-tag   { color: var(--amber);  background: var(--amber-dim);  border: 1px solid rgba(240,160,48,0.3); }
+.concept-card.bonus .c-tag  { color: var(--blue);   background: var(--blue-dim);   border: 1px solid rgba(61,142,240,0.3); }
+.concept-card h4 { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text-bright); margin-bottom: 6px; }
+.concept-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+/* TEMPLATE BOX */
+.template-box {
+  background: var(--surface2);
+  border: 1px dashed var(--border2);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 20px 0;
+}
+.template-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.template-label::before { content: '📋'; }
+.template-field {
+  margin-bottom: 14px;
+}
+.template-field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+.template-field .fill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* FRAMEWORK BLOCK */
+.framework-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+.framework-header {
+  padding: 16px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.framework-header h4 {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+.fw-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+.fw-tag.dare   { color: var(--green);  background: var(--green-dim);  border: 1px solid rgba(0,217,126,0.3); }
+.fw-tag.align  { color: var(--blue);   background: var(--blue-dim);   border: 1px solid rgba(61,142,240,0.3); }
+.framework-stages { display: flex; }
+@media (max-width: 700px) { .framework-stages { flex-direction: column; } }
+.fw-stage {
+  flex: 1;
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  font-size: 13px;
+}
+.fw-stage:last-child { border-right: none; }
+.fw-stage-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.fw-stage-name { font-family: var(--display); font-size: 13px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+.fw-stage p { font-size: 12px; color: var(--text-dim); margin: 0; line-height: 1.4; }
+
+/* COMPARISON TABLE */
+.comp-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.comp-table thead tr { background: var(--surface); }
+.comp-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.comp-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+.comp-table tbody tr:hover { background: var(--surface); }
+.comp-table tbody td { padding: 11px 16px; vertical-align: top; line-height: 1.5; }
+.comp-table td:first-child { font-family: var(--mono); font-size: 11px; color: var(--text-dim); border-right: 1px solid var(--border); width: 22%; }
+.t-green { color: var(--green); }
+.t-blue  { color: var(--blue);  }
+
+/* EXERCISE */
+.exercise {
+  background: linear-gradient(135deg, rgba(160,96,240,0.05) 0%, rgba(61,142,240,0.05) 100%);
+  border: 1px solid rgba(160,96,240,0.25);
+  border-radius: 10px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.exercise-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.exercise-label::before { content: '⚡'; }
+.exercise h4 { font-family: var(--display); font-size: 17px; font-weight: 700; color: var(--text-bright); margin-bottom: 10px; }
+.exercise p { font-size: 14px; }
+.exercise ol { padding-left: 20px; }
+.exercise ol li { font-size: 14px; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+.exercise ol li strong { color: var(--text-bright); }
+
+/* PROFILE CARD */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+@media (max-width: 600px) { .profile-grid { grid-template-columns: 1fr; } }
+.profile-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  background: var(--surface);
+}
+.profile-card .p-role {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.profile-card.trad .p-role { color: var(--blue); }
+.profile-card.new  .p-role { color: var(--green); }
+.profile-card h4 { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--text-bright); margin-bottom: 10px; }
+.profile-card ul { padding-left: 16px; }
+.profile-card ul li { font-size: 13px; color: var(--text-dim); margin-bottom: 5px; line-height: 1.4; }
+.profile-card ul li strong { color: var(--text); }
+
+/* NAV FOOTER */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 64px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+@media (max-width: 768px) { .chapter-nav { padding: 24px; } }
+.nav-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-btn:hover { border-color: var(--green); color: var(--green); }
+.nav-btn.primary { background: var(--green-dim); border-color: rgba(0,217,126,0.4); color: var(--green); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { border-color: var(--border2); color: var(--text); }
+
+/* BADGE ROW */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge.green  { color: var(--green);  border-color: rgba(0,217,126,0.3);  background: var(--green-dim); }
+.badge.blue   { color: var(--blue);   border-color: rgba(61,142,240,0.3); background: var(--blue-dim); }
+.badge.amber  { color: var(--amber);  border-color: rgba(240,160,48,0.3); background: var(--amber-dim); }
+.badge.purple { color: var(--purple); border-color: rgba(160,96,240,0.3); background: var(--purple-dim); }
+
+/* SCROLL */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="mark">v2.0 · 2026 Edition</div>
+    <h1>The AI PM<br/>Playbook</h1>
+    <div class="version">Open source · 7 chapters · 2 paths</div>
+  </div>
+
+  <div class="sidebar-paths">
+    <div class="path-label">Your Path</div>
+    <button class="path-btn active-path" onclick="setPath('trad')">🔄 &nbsp;Traditional PM → AI</button>
+    <button class="path-btn" onclick="setPath('new')">🎓 &nbsp;New Grad → AI PM</button>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Chapters</div>
+    <div class="nav-item active" onclick="showChapter(0)"><span class="num">00</span> Introduction &amp; Overview <span class="nav-badge">README</span></div>
+    <div class="nav-item" onclick="showChapter(1)"><span class="num">01</span> AI/ML Foundations <span class="nav-badge">Concepts</span></div>
+    <div class="nav-item" onclick="showChapter(2)"><span class="num">02</span> Your Entry Path <span class="nav-badge">2 Paths</span></div>
+    <div class="nav-item" onclick="showChapter(3)"><span class="num">03</span> DARE &amp; ALIGN <span class="nav-badge">Methods</span></div>
+    <div class="nav-item" onclick="showChapter(4)"><span class="num">04</span> Working with Eng &amp; DS <span class="nav-badge">Collab</span></div>
+    <div class="nav-item" onclick="showChapter(5)"><span class="num">05</span> Stakeholder Management <span class="nav-badge">Politics</span></div>
+    <div class="nav-item" onclick="showChapter(6)"><span class="num">06</span> Portfolio &amp; Credibility <span class="nav-badge">Brand</span></div>
+    <div class="nav-item" onclick="showChapter(7)"><span class="num">07</span> Landing the Role <span class="nav-badge">Job Hunt</span></div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div>Progress</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div id="progressText">0 of 8 chapters read</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ────────────────────────────────────────
+     CHAPTER 0: README
+──────────────────────────────────────── -->
+<div class="chapter active" id="ch0">
+  <div class="readme-hero">
+    <div class="hero-eyebrow">
+      <span class="hero-tag green">Open Playbook</span>
+      <span class="hero-tag blue">AI-Native PM</span>
+    </div>
+    <h1>The <span class="accent">AI PM</span><br/>Playbook</h1>
+    <p class="subtitle">A practical, opinionated guide to becoming a product manager in the age of vibe coding and AI-native development. Two distinct paths. Zero fluff.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>7</strong>Chapters</div>
+      <div class="hero-stat"><strong>2</strong>Entry Paths</div>
+      <div class="hero-stat"><strong>30+</strong>Checklists</div>
+      <div class="hero-stat"><strong>12+</strong>Templates</div>
+      <div class="hero-stat"><strong>∞</strong>Better Decisions</div>
+    </div>
+    <div class="badge-row">
+      <span class="badge green">DARE Framework</span>
+      <span class="badge blue">ALIGN Framework</span>
+      <span class="badge amber">AgentOps</span>
+      <span class="badge purple">MLOps Basics</span>
+      <span class="badge green">AI/ML Concepts</span>
+      <span class="badge blue">Interview Prep</span>
+    </div>
+  </div>
+
+  <div class="path-cards">
+    <div class="path-card trad" onclick="setPath('trad'); showChapter(2)">
+      <div class="path-for">Path A</div>
+      <h3>Traditional PM<br/>Transitioning to AI</h3>
+      <p>You've shipped products. You know JIRA, PRDs, and roadmaps. Now you need to rewire how you think about building in a world where AI writes the code.</p>
+      <button class="path-btn-go">Start Path A →</button>
+    </div>
+    <div class="path-card new" onclick="setPath('new'); showChapter(2)">
+      <div class="path-for">Path B</div>
+      <h3>New Grad Entering<br/>AI Product Management</h3>
+      <p>You're starting fresh. No bad habits to unlearn — but you need to build credibility fast in a field that rewards judgment over tenure.</p>
+      <button class="path-btn-go">Start Path B →</button>
+    </div>
+  </div>
+
+  <div class="toc-section">
+    <div class="section-header">
+      <h2>Table of Contents</h2>
+      <span class="mono-label">7 chapters</span>
+    </div>
+    <div class="toc-grid">
+      <div class="toc-item" onclick="showChapter(1)"><span class="toc-num">01</span><div class="toc-text"><div class="title">AI/ML Foundations</div><div class="desc">Concepts every PM must know</div></div></div>
+      <div class="toc-item" onclick="showChapter(2)"><span class="toc-num">02</span><div class="toc-text"><div class="title">Your Entry Path</div><div class="desc">Trad PM vs. New Grad strategy</div></div></div>
+      <div class="toc-item" onclick="showChapter(3)"><span class="toc-num">03</span><div class="toc-text"><div class="title">DARE &amp; ALIGN</div><div class="desc">Your new working methodology</div></div></div>
+      <div class="toc-item" onclick="showChapter(4)"><span class="toc-num">04</span><div class="toc-text"><div class="title">Eng &amp; Data Science</div><div class="desc">Collaboration playbook</div></div></div>
+      <div class="toc-item" onclick="showChapter(5)"><span class="toc-num">05</span><div class="toc-text"><div class="title">Stakeholder Mgmt</div><div class="desc">Navigating AI orgs</div></div></div>
+      <div class="toc-item" onclick="showChapter(6)"><span class="toc-num">06</span><div class="toc-text"><div class="title">Portfolio &amp; Credibility</div><div class="desc">Build your AI PM brand</div></div></div>
+      <div class="toc-item" onclick="showChapter(7)"><span class="toc-num">07</span><div class="toc-text"><div class="title">Landing the Role</div><div class="desc">Resume, interviews, offers</div></div></div>
+    </div>
+  </div>
+
+  <div class="chapter-nav">
+    <button class="nav-btn" disabled>← Previous</button>
+    <button class="nav-btn primary" onclick="showChapter(1)">Chapter 01: AI/ML Foundations →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 1: AI/ML FOUNDATIONS
+──────────────────────────────────────── -->
+<div class="chapter" id="ch1">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 01</div>
+      <h1 class="chapter-title">AI/ML Foundations<br/>Every PM Must Know</h1>
+      <p class="chapter-desc">You don't need to write a transformer. You need to know enough to ask the right questions, spot the wrong answers, and never get bluffed by an engineer.</p>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body"><strong>The PM Standard</strong>You need to understand AI/ML at the level of a fluent non-practitioner. Think: a great CFO doesn't code the financial models, but they can interrogate the assumptions inside them.</div>
+    </div>
+
+    <h3 class="section-title">Must-Know Concepts</h3>
+    <div class="concept-grid">
+      <div class="concept-card must"><div class="c-tag">Must Know</div><h4>Training vs. Inference</h4><p>Training = teaching the model. Inference = the model answering a question. PMs own inference cost and latency decisions.</p></div>
+      <div class="concept-card must"><div class="c-tag">Must Know</div><h4>Hallucination</h4><p>When a model produces confident, plausible-sounding but factually wrong output. Your #1 product risk in any LLM feature.</p></div>
+      <div class="concept-card must"><div class="c-tag">Must Know</div><h4>Context Window</h4><p>How much text the model can "see" at once. Determines what features are feasible and at what cost.</p></div>
+      <div class="concept-card must"><div class="c-tag">Must Know</div><h4>Fine-tuning vs. RAG</h4><p>Fine-tuning retrains the model on your data. RAG retrieves relevant docs at query time. Different cost/accuracy trade-offs that PMs must understand.</p></div>
+      <div class="concept-card know"><div class="c-tag">Know Well</div><h4>Prompt Engineering</h4><p>Structuring inputs to get better outputs. As a PM, this is now a core design skill — equivalent to writing good UX copy.</p></div>
+      <div class="concept-card know"><div class="c-tag">Know Well</div><h4>Evals (Evaluations)</h4><p>How you measure if an AI feature is working. Without evals, you're shipping blind. PMs should define eval criteria before build starts.</p></div>
+      <div class="concept-card know"><div class="c-tag">Know Well</div><h4>Latency vs. Quality</h4><p>Faster models are often less capable. You'll make this trade-off in almost every AI feature decision. Know the levers.</p></div>
+      <div class="concept-card know"><div class="c-tag">Know Well</div><h4>Model Drift</h4><p>When model performance degrades over time as real-world data diverges from training data. You need a monitoring plan before launch.</p></div>
+      <div class="concept-card bonus"><div class="c-tag">Know Enough</div><h4>Embeddings &amp; Vector DBs</h4><p>How semantic search works under the hood. Relevant if building search, recommendations, or knowledge retrieval products.</p></div>
+      <div class="concept-card bonus"><div class="c-tag">Know Enough</div><h4>Agents &amp; Tool Use</h4><p>When models call external tools (APIs, code runners, web search) to complete tasks. The architecture behind agentic products.</p></div>
+      <div class="concept-card bonus"><div class="c-tag">Know Enough</div><h4>Tokens &amp; Pricing</h4><p>LLM costs are charged per token (roughly ¾ of a word). You need to model unit economics before committing to an AI feature.</p></div>
+      <div class="concept-card bonus"><div class="c-tag">Know Enough</div><h4>RLHF</h4><p>Reinforcement Learning from Human Feedback — how models are aligned to human preferences. Context for why models behave the way they do.</p></div>
+    </div>
+
+    <h3 class="section-title">The AI PM Vocabulary Cheat Sheet</h3>
+    <div class="code-block">
+<span class="comment">// Words you need to use correctly in every meeting</span>
+
+<span class="key">Prompt</span>      → <span class="val">Input you give the model</span>
+<span class="key">Completion</span>  → <span class="val">Output the model generates</span>
+<span class="key">Temperature</span> → <span class="val">Randomness dial (0 = deterministic, 1 = creative)</span>
+<span class="key">Grounding</span>   → <span class="val">Connecting model output to verified data sources</span>
+<span class="key">System Prompt</span> → <span class="val">Hidden instructions that shape model behavior</span>
+<span class="key">Few-shot</span>    → <span class="val">Giving examples in your prompt to guide output format</span>
+<span class="key">Chain-of-thought</span> → <span class="val">Prompting the model to reason step by step</span>
+<span class="key">Guardrails</span>  → <span class="val">Safety checks that filter harmful inputs/outputs</span>
+<span class="key">Latency P50/P99</span> → <span class="val">Response time for 50% / 99% of requests</span>
+<span class="key">A/B eval</span>    → <span class="val">Comparing two model outputs to determine which is better</span>
+    </div>
+
+    <h3 class="section-title">Before You Build Any AI Feature — Checklist</h3>
+    <ul class="checklist" id="ch1-check">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Define your eval criteria</strong><span>How will you measure if this is working? What does "good output" look like?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Map your failure modes</strong><span>What happens when the model hallucinates? Who is affected and how?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Model the unit economics</strong><span>Estimate token costs at 10k, 100k, 1M requests. Is the margin viable?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Decide: fine-tune, RAG, or prompt only</strong><span>Each has different build time, cost, and accuracy profiles.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Establish a monitoring baseline</strong><span>What metrics will you track in production? Who owns the alert?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Run a red-team session</strong><span>Try to break your feature before users do. Document every failure.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Write the "not for" statement</strong><span>Explicitly define what this AI feature should NOT be used for.</span></div></li>
+    </ul>
+
+    <div class="exercise">
+      <div class="exercise-label">Exercise 1.1</div>
+      <h4>The AI Feature Interrogation</h4>
+      <p>Pick any AI feature you've used in the last week (autocomplete, summarization, recommendation). Answer these five questions as if you were the PM who shipped it:</p>
+      <ol>
+        <li>What is the <strong>training data source</strong>, and what biases might it carry?</li>
+        <li>What does a <strong>hallucination look like</strong> in this context, and how bad is it?</li>
+        <li>What is the <strong>latency target</strong>, and which model tier achieves it at what cost?</li>
+        <li>How would you <strong>eval this feature</strong>? What's your ground truth?</li>
+        <li>What <strong>monitoring would you set up</strong> on day one post-launch?</li>
+      </ol>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(0)">← README</button>
+    <button class="nav-btn primary" onclick="showChapter(2)">Chapter 02: Your Entry Path →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 2: ENTRY PATHS
+──────────────────────────────────────── -->
+<div class="chapter" id="ch2">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 02</div>
+      <h1 class="chapter-title">Your Entry Path<br/>into AI Product</h1>
+      <p class="chapter-desc">Where you're coming from determines your strategy. A traditional PM and a new grad are playing different games. Know which one is yours.</p>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-card trad">
+        <div class="p-role">Path A · Traditional PM</div>
+        <h4>Your Superpower & Your Threat</h4>
+        <ul>
+          <li><strong>Superpower:</strong> You understand users, trade-offs, and stakeholders. That's still rare.</li>
+          <li><strong>Threat:</strong> Your process instincts are tuned to a slower world. Unlearn deliberately.</li>
+          <li><strong>First move:</strong> Identify which 30% of your current role AI has already automated and stop doing it.</li>
+          <li><strong>Credibility play:</strong> Ship one AI feature from concept to production inside your current role before claiming the title.</li>
+        </ul>
+      </div>
+      <div class="profile-card new">
+        <div class="p-role">Path B · New Grad</div>
+        <h4>Your Superpower & Your Gap</h4>
+        <ul>
+          <li><strong>Superpower:</strong> No muscle memory to unlearn. You'll adopt AI-native patterns faster than anyone over 30.</li>
+          <li><strong>Gap:</strong> You lack the earned credibility that comes from shipping products and handling failure.</li>
+          <li><strong>First move:</strong> Build something with AI tools in public. Write about it. Ship it. Show your thinking.</li>
+          <li><strong>Credibility play:</strong> Depth in one domain (healthcare, fintech, devtools) plus AI fluency beats shallow breadth.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="section-title">30-60-90 Day Plans</h3>
+
+    <h4 class="sub-title">Path A · Traditional PM Transition</h4>
+    <div class="code-block">
+<span class="tag">## Days 1–30: Audit &amp; Unlearn</span>
+<span class="key">Week 1–2</span>  → <span class="val">Complete AI/ML Foundations chapter. Take fast.ai or DeepLearning.AI short course.</span>
+<span class="key">Week 2–3</span>  → <span class="val">Audit your current role. List every task AI can now do in &lt;10 mins that took you hours.</span>
+<span class="key">Week 3–4</span>  → <span class="val">Identify one live AI initiative at your company. Embed yourself in it. Ask to co-own one decision.</span>
+
+<span class="tag">## Days 31–60: Build Credibility</span>
+<span class="key">Week 5–6</span>  → <span class="val">Prototype one AI feature using vibe coding tools (Claude Code, Cursor). It doesn't need to be perfect.</span>
+<span class="key">Week 6–7</span>  → <span class="val">Run a DARE cycle on a small, low-stakes product bet. Document the process.</span>
+<span class="key">Week 7–8</span>  → <span class="val">Present your AI feature prototype + DARE cycle results to your product lead.</span>
+
+<span class="tag">## Days 61–90: Position &amp; Transition</span>
+<span class="key">Week 9–10</span> → <span class="val">Update your brag doc with AI-specific wins. Frame them in outcomes, not activities.</span>
+<span class="key">Week 10–11</span>→ <span class="val">Start targeting AI PM roles internally first. Internal transitions are 3x faster than external.</span>
+<span class="key">Week 11–12</span>→ <span class="val">Begin portfolio building (Chapter 06) and interview prep (Chapter 07).</span>
+    </div>
+
+    <h4 class="sub-title">Path B · New Grad Entry</h4>
+    <div class="code-block">
+<span class="tag">## Days 1–30: Build in Public</span>
+<span class="key">Week 1–2</span>  → <span class="val">Build a small AI product (not just a wrapper). Use it to solve a real problem you have.</span>
+<span class="key">Week 2–3</span>  → <span class="val">Write a post-mortem of building it: what worked, what failed, what you'd change.</span>
+<span class="key">Week 3–4</span>  → <span class="val">Publish it. LinkedIn, Substack, GitHub — doesn't matter where. The act of publishing is the credential.</span>
+
+<span class="tag">## Days 31–60: Go Deep in One Domain</span>
+<span class="key">Week 5–6</span>  → <span class="val">Pick one vertical (fintech, health, devtools, edtech). Learn the regulatory + competitive landscape.</span>
+<span class="key">Week 6–7</span>  → <span class="val">Map 10 AI companies in that vertical. Analyze one product per week: what's the AI doing, is it working?</span>
+<span class="key">Week 7–8</span>  → <span class="val">Write a product teardown of one AI feature. Publish it. Tag the company's PM team.</span>
+
+<span class="tag">## Days 61–90: Get in the Room</span>
+<span class="key">Week 9–10</span> → <span class="val">Apply to APM programs at AI-native companies. Prepare your portfolio (Chapter 06).</span>
+<span class="key">Week 10–11</span>→ <span class="val">Do 10 informational interviews with working AI PMs. Ask about day 1 mistakes, not career paths.</span>
+<span class="key">Week 11–12</span>→ <span class="val">Practice the AI PM interview loop (Chapter 07). Ship your portfolio MVP.</span>
+    </div>
+
+    <div class="callout amber">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><strong>The Credential Trap</strong>Neither a certificate from a PM bootcamp nor an AI specialization course will get you hired. What gets you hired is evidence that you've made good product decisions. Courses give you vocabulary. Only building gives you judgment.</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-label">Exercise 2.1</div>
+      <h4>The "AI PM in 1 Week" Sprint</h4>
+      <p>Regardless of your path, complete this sprint before moving to Chapter 03:</p>
+      <ol>
+        <li>Pick a product you use daily. <strong>Identify one workflow</strong> that is not yet AI-assisted but should be.</li>
+        <li>Write a one-sentence hypothesis: <strong>"If we add [AI capability] to [workflow], users will [behavior change] because [reason]."</strong></li>
+        <li>Use any vibe coding tool to <strong>build a rough prototype</strong> of the AI feature in under 4 hours.</li>
+        <li>Show it to 3 people. Write down <strong>exactly what they say</strong> (not your interpretation).</li>
+        <li>Decide: <strong>would you kill this or amplify it?</strong> Write one paragraph justifying your decision.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(1)">← Chapter 01</button>
+    <button class="nav-btn primary" onclick="showChapter(3)">Chapter 03: DARE &amp; ALIGN →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 3: DARE & ALIGN
+──────────────────────────────────────── -->
+<div class="chapter" id="ch3">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 03</div>
+      <h1 class="chapter-title">DARE &amp; ALIGN<br/>Your Working OS</h1>
+      <p class="chapter-desc">Two frameworks. Two contexts. Both rooted in proven AI engineering disciplines. Pick the one that matches your environment and use it every day.</p>
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-icon">🧭</div>
+      <div class="callout-body"><strong>Which Framework Is Yours?</strong>DARE = You have autonomy to choose what to build. ALIGN = Business leaders hand you the mandate and you execute. Most AI PMs will need both at different points in their career.</div>
+    </div>
+
+    <h3 class="section-title">DARE — For Innovation Teams</h3>
+    <p><strong>Intellectual lineage:</strong> Eric Ries's Build-Measure-Learn loop (Lean Startup) + MLOps continuous feedback cycles. DARE applies these to PM decision-making, not just engineering.</p>
+
+    <div class="framework-block">
+      <div class="framework-header"><h4>The DARE Framework</h4><span class="fw-tag dare">Innovation PM</span></div>
+      <div class="framework-stages">
+        <div class="fw-stage"><div class="fw-stage-label">D</div><div class="fw-stage-name">Decide First</div><p>Form conviction before research. Use AI to validate in hours.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">A</div><div class="fw-stage-name">Act Before Ready</div><p>Build a working surface in 48hrs. Not a wireframe — reality.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">R</div><div class="fw-stage-name">Read at Scale</div><p>Let AI parse live behavioral signals. Skip the usability study.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">E</div><div class="fw-stage-name">Expand or Erase</div><p>Binary. Clear signal: ship wider. Weak signal: kill clean.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">05</div><div class="fw-stage-name">Own the Outcome</div><p>Document every bet. AI maintains the log. You own the judgment.</p></div>
+      </div>
+    </div>
+
+    <h4 class="sub-title">DARE in Practice — Daily Habits</h4>
+    <ul class="checklist" id="dare-daily">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Start every week with a written conviction bet</strong><span>One sentence. One hypothesis. What are you trying to prove this week?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Kill any prototype that hasn't touched a real user in 5 days</strong><span>Internal polish ≠ progress. Exposure to reality is the only progress metric.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Maintain a decision log, not a PRD</strong><span>Every decision: the bet, the signal, the outcome. Reviewed weekly.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Run a daily demo — not a weekly sprint review</strong><span>If you can build it in a day, you can demo it in a day.</span></div></li>
+    </ul>
+
+    <h3 class="section-title">ALIGN — For Enterprise Teams</h3>
+    <p><strong>Intellectual lineage:</strong> LLMOps lifecycle management + AgentOps governance principles. ALIGN applies enterprise-grade operational rigor to PM delivery execution.</p>
+
+    <div class="framework-block">
+      <div class="framework-header"><h4>The ALIGN Framework</h4><span class="fw-tag align">Enterprise PM</span></div>
+      <div class="framework-stages">
+        <div class="fw-stage"><div class="fw-stage-label">A</div><div class="fw-stage-name">Anchor Intent</div><p>Turn exec mandate into a signed one-page intent brief. This is your north star.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">L</div><div class="fw-stage-name">Lay Constraints</div><p>Map every blocker before build. Regulatory, integration, approval chains.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">I</div><div class="fw-stage-name">Iterate Open</div><p>Weekly demos to stakeholders. Make change cheap, not impossible.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">G</div><div class="fw-stage-name">Gate Purposefully</div><p>One owner, one question, 48-hr SLA per gate. No theatre.</p></div>
+        <div class="fw-stage"><div class="fw-stage-label">N</div><div class="fw-stage-name">Normalize + Narrate</div><p>Document what shipped. Translate features into business outcomes for leadership.</p></div>
+      </div>
+    </div>
+
+    <h4 class="sub-title">The Intent Brief Template</h4>
+    <div class="template-box">
+      <div class="template-label">ALIGN · Stage A Template — Intent Brief</div>
+      <div class="template-field"><label>Business Mandate (verbatim from leader)</label><div class="fill">"We need to [exact words the exec used]..."</div></div>
+      <div class="template-field"><label>Actual Outcome Being Driven</label><div class="fill">Translated: "What they really mean is we need to move [metric] from X to Y by [date]..."</div></div>
+      <div class="template-field"><label>What Success Looks Like (measurable)</label><div class="fill">"This is done when [specific, measurable condition is true]..."</div></div>
+      <div class="template-field"><label>What This Explicitly Does NOT Include</label><div class="fill">"Out of scope: [list 3 things the leader might assume are included but aren't]..."</div></div>
+      <div class="template-field"><label>Signed Off By</label><div class="fill">[Exec name] — [Date] — [Medium: email / meeting / written]</div></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-label">Exercise 3.1</div>
+      <h4>Run a DARE Cycle on a Real Problem</h4>
+      <ol>
+        <li><strong>D:</strong> Write your conviction bet in exactly one sentence. Start it with "I believe that..."</li>
+        <li><strong>A:</strong> Set a 4-hour timer. Build the minimum thing that could generate signal. No extensions.</li>
+        <li><strong>R:</strong> Deploy or share with 5 real people. Record raw reactions — don't interpret yet.</li>
+        <li><strong>E:</strong> Decision: expand or erase? Write your reasoning in 3 sentences.</li>
+        <li><strong>Own it:</strong> Log this entire cycle in your decision log. Date it. You'll reference it in your interview.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(2)">← Chapter 02</button>
+    <button class="nav-btn primary" onclick="showChapter(4)">Chapter 04: Working with Eng &amp; DS →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 4: WORKING WITH ENG & DS
+──────────────────────────────────────── -->
+<div class="chapter" id="ch4">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 04</div>
+      <h1 class="chapter-title">Working with Engineers<br/>&amp; Data Scientists</h1>
+      <p class="chapter-desc">In AI orgs, the PM who earns engineering trust moves 3x faster than the one who doesn't. Here's how to earn it — and keep it.</p>
+    </div>
+
+    <h3 class="section-title">The Trust Equation</h3>
+    <p>Engineers and data scientists extend trust to PMs based on one simple criterion: <strong>does this person help me do better work, or do they create friction?</strong> Everything below is a variation on that question.</p>
+
+    <div class="callout red">
+      <div class="callout-icon">🚫</div>
+      <div class="callout-body"><strong>What Engineers Hate From PMs</strong>Changing requirements mid-sprint without acknowledging trade-offs. Promising stakeholders features before technical feasibility is confirmed. Using AI to look technical without being honest about your depth. Prioritizing based on gut feel while claiming it's data-driven.</div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-icon">✅</div>
+      <div class="callout-body"><strong>What Engineers Respect From PMs</strong>Framing problems, not solutions ("the user can't find X" not "add a search bar"). Understanding trade-offs and making them explicit. Shielding the team from stakeholder noise. Making decisions fast and reversibly. Writing good prompts that produce genuinely useful AI outputs.</div>
+    </div>
+
+    <h3 class="section-title">The AI PM ↔ Data Scientist Relationship</h3>
+    <table class="comp-table">
+      <thead><tr><th>Situation</th><th class="t-blue">What DS Needs From PM</th><th class="t-green">What PM Needs From DS</th></tr></thead>
+      <tbody>
+        <tr><td>Feature scoping</td><td>Clear success metrics and eval criteria before they start</td><td>Honest feasibility range, not just "yes we can build it"</td></tr>
+        <tr><td>Model selection</td><td>Business context: latency budget, cost ceiling, accuracy floor</td><td>The real trade-offs between model options in plain language</td></tr>
+        <tr><td>Poor performance</td><td>User impact framing, not technical blame</td><td>Root cause analysis before proposing a fix</td></tr>
+        <tr><td>Launch decision</td><td>Clear go/no-go criteria agreed in advance</td><td>Confidence interval on current model performance</td></tr>
+        <tr><td>Post-launch drift</td><td>Monitoring SLAs and escalation triggers defined upfront</td><td>Early signal when model behavior is degrading</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="section-title">The Vibe Coding Collaboration Model</h3>
+    <p>With vibe coding, the PM-engineer relationship is changing from a handoff model to a co-build model. Here's what that looks like in practice:</p>
+
+    <div class="code-block">
+<span class="comment">// Old Model (Handoff)</span>
+<span class="key">PM</span>       → <span class="str">writes PRD</span>  → <span class="key">Design</span> → <span class="str">mockups</span> → <span class="key">Eng</span> → <span class="str">builds</span>
+<span class="comment">// Time: 3-6 weeks before first line of production code</span>
+
+<span class="comment">// New Model (Co-build)</span>
+<span class="key">PM + Eng</span>  → <span class="str">shared prompt session</span> → <span class="val">working prototype in hours</span>
+<span class="key">PM</span>        → <span class="str">vibe-codes the UX shell</span> → <span class="val">eng wires in real logic</span>
+<span class="key">Both</span>      → <span class="str">deploy to 10 users same day</span> → <span class="val">read signal together</span>
+<span class="comment">// Time: 48 hours from idea to signal</span>
+    </div>
+
+    <h4 class="sub-title">Prompting as Product Thinking — 5 Rules</h4>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Constrain the output format first</strong><span>Tell the AI what shape the answer should take before asking the question.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Include the "why" in your prompt</strong><span>Context produces better output. "I'm a PM writing for a non-technical exec" changes everything.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Use negative constraints explicitly</strong><span>"Do not include..." is as important as "Include..."</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Iterate in the open with your engineer</strong><span>Share your prompts with eng. It builds shared language and catches bad assumptions early.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Document your best prompts as product assets</strong><span>A great system prompt is a product decision. Version-control it like one.</span></div></li>
+    </ul>
+
+    <div class="exercise">
+      <div class="exercise-label">Exercise 4.1</div>
+      <h4>The "No PRD" Challenge</h4>
+      <p>For your next small feature idea, resist writing a PRD. Instead:</p>
+      <ol>
+        <li>Book a <strong>30-minute session with an engineer</strong>. Bring only your one-sentence hypothesis and a rough sketch.</li>
+        <li>Vibe-code a prototype <strong>together in the meeting</strong>. You drive, they advise on feasibility in real time.</li>
+        <li>Before you leave the meeting, define <strong>exactly three signals</strong> that would tell you this is working.</li>
+        <li>Reflect: what did the engineer catch that a PRD never would have surfaced?</li>
+      </ol>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(3)">← Chapter 03</button>
+    <button class="nav-btn primary" onclick="showChapter(5)">Chapter 05: Stakeholder Mgmt →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 5: STAKEHOLDER MANAGEMENT
+──────────────────────────────────────── -->
+<div class="chapter" id="ch5">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 05</div>
+      <h1 class="chapter-title">Stakeholder Management<br/>in AI Orgs</h1>
+      <p class="chapter-desc">AI projects fail stakeholder management more often than they fail technically. Executives don't understand AI risk. Business leads overestimate capability. Your job is to manage the gap.</p>
+    </div>
+
+    <h3 class="section-title">The AI Stakeholder Landscape</h3>
+    <table class="comp-table">
+      <thead><tr><th>Stakeholder</th><th>Their Fear</th><th>Their Hope</th><th>Your Move</th></tr></thead>
+      <tbody>
+        <tr><td>C-Suite</td><td>AI liability / reputational harm</td><td>10x cost reduction / competitive edge</td><td>Lead with risk mitigation + measurable ROI</td></tr>
+        <tr><td>Business Leader</td><td>Missing targets because AI isn't ready</td><td>AI does the thing they imagined in the meeting</td><td>Anchor the intent brief. Kill magical thinking early.</td></tr>
+        <tr><td>Legal / Compliance</td><td>Regulatory exposure, data misuse</td><td>Clear boundaries they can sign off on</td><td>Involve early. Make them co-authors of guardrails.</td></tr>
+        <tr><td>End Users</td><td>Being replaced or surveilled by AI</td><td>AI makes their job easier</td><td>Show them the AI doing grunt work, not judging them.</td></tr>
+        <tr><td>Eng / DS Team</td><td>Committed to an infeasible deadline</td><td>PM who understands technical reality</td><td>Set ranges not dates. Absorb the pressure upward.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="section-title">The Agent-Generated Status Update</h3>
+    <p>One of the most powerful applications of ALIGN's Agent monitoring layer is automated stakeholder communication. Here's the template your monitoring agent should generate weekly:</p>
+
+    <div class="template-box">
+      <div class="template-label">Weekly AI Initiative Status — Executive Template</div>
+      <div class="template-field"><label>Initiative &amp; Stage</label><div class="fill">[Initiative name] is in [Stage X of 5 — ALIGN]. Status: [ON TRACK / AT RISK / BLOCKED].</div></div>
+      <div class="template-field"><label>What happened this week (in outcomes, not activities)</label><div class="fill">"We validated that [user behavior/business metric] moved [direction] when [feature] was deployed to [cohort]."</div></div>
+      <div class="template-field"><label>One risk the leader needs to know about</label><div class="fill">"[Risk] is currently [status]. The team is addressing it via [action] by [date]. No leader action needed unless [condition]."</div></div>
+      <div class="template-field"><label>One decision the leader needs to make (if any)</label><div class="fill">"We need a decision on [X] by [date] to avoid [consequence]. Options: [A] or [B]. PM recommends [A] because [reason]."</div></div>
+      <div class="template-field"><label>Next milestone</label><div class="fill">"[Milestone] is expected by [date]. Confidence: [High / Medium / Low]."</div></div>
+    </div>
+
+    <h3 class="section-title">Handling the "Can AI Do That?" Meeting</h3>
+    <p>Every AI PM will face the moment where an executive asks, in a meeting, whether AI can do something that sounds plausible but may be technically wrong, legally risky, or just a bad idea.</p>
+
+    <div class="callout amber">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body"><strong>The PM's Response Framework</strong>Never say "yes" or "no" in the meeting. Say: "That's technically feasible in [timeframe range] with [constraint]. Before we commit, I'd like to validate [assumption] and check with [legal/eng]. I'll come back to you by [date] with a recommendation." Then actually come back with one.</div>
+    </div>
+
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Pre-brief your key stakeholder before every major review</strong><span>No executive should hear a surprise in a meeting. Walk them through it 24 hours before.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Separate "what AI can do" from "what we should build"</strong><span>Feasibility is an engineering question. Priority is a product question. Own the latter.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Never let an exec set an AI deadline without a feasibility range</strong><span>Commit to a range, not a date. "Q2 to Q3 depending on data availability" beats a promise you can't keep.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Document all scope decisions in writing within 24 hours</strong><span>Verbal agreements dissolve. Written ones become your protection when scope creep arrives.</span></div></li>
+    </ul>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(4)">← Chapter 04</button>
+    <button class="nav-btn primary" onclick="showChapter(6)">Chapter 06: Portfolio &amp; Credibility →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 6: PORTFOLIO & CREDIBILITY
+──────────────────────────────────────── -->
+<div class="chapter" id="ch6">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 06</div>
+      <h1 class="chapter-title">Portfolio &amp;<br/>Credibility Building</h1>
+      <p class="chapter-desc">Your portfolio is not a list of companies you've worked at. It's a record of decisions you've made and what you learned from them. Here's how to build one that gets you hired.</p>
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-icon">🏗️</div>
+      <div class="callout-body"><strong>The AI PM Portfolio Thesis</strong>Hiring managers aren't looking for someone who used AI. They're looking for someone who made good product decisions under uncertainty and can articulate why. Build your portfolio around decisions, not outputs.</div>
+    </div>
+
+    <h3 class="section-title">Portfolio Components</h3>
+    <div class="concept-grid">
+      <div class="concept-card must"><div class="c-tag">Essential</div><h4>The Decision Log</h4><p>A living document of every significant product decision: the context, the options, what you chose, and what happened. This is your most credible artifact.</p></div>
+      <div class="concept-card must"><div class="c-tag">Essential</div><h4>A Shipped AI Feature</h4><p>Something real users touched. Doesn't need to be at scale. A prototype with 50 users and real behavioral data beats a concept deck every time.</p></div>
+      <div class="concept-card must"><div class="c-tag">Essential</div><h4>A Public Teardown</h4><p>A written analysis of an AI product: what it does, what the PM likely got right, what you'd do differently. Shows you can evaluate AI products critically.</p></div>
+      <div class="concept-card know"><div class="c-tag">Strong Signal</div><h4>A DARE Cycle Write-up</h4><p>Walk through a DARE cycle you ran: the bet, the prototype, the signal, the kill or amplify decision. Show the reasoning, not just the outcome.</p></div>
+      <div class="concept-card know"><div class="c-tag">Strong Signal</div><h4>An Eval Framework</h4><p>Document how you evaluated an AI feature's quality. What did good look like? How did you measure it? This is rare and valued.</p></div>
+      <div class="concept-card bonus"><div class="c-tag">Good to Have</div><h4>A Domain POV</h4><p>A short (500 word) opinion piece on where AI is going in one specific industry. Shows you think strategically, not just tactically.</p></div>
+    </div>
+
+    <h3 class="section-title">The GitHub-Style Portfolio Structure</h3>
+    <div class="code-block">
+<span class="tag">ai-pm-portfolio/</span>
+<span class="key">├── README.md</span>          <span class="comment">← Your PM thesis in 200 words. Who you are, what you believe.</span>
+<span class="key">├── decisions/</span>
+<span class="val">│   ├── decision-log.md</span>    <span class="comment">← Running log of product decisions with outcomes</span>
+<span class="val">│   └── case-study-01.md</span>   <span class="comment">← Deep dive on your most complex decision</span>
+<span class="key">├── prototypes/</span>
+<span class="val">│   ├── feature-01/</span>        <span class="comment">← Working prototype + context doc</span>
+<span class="val">│   └── dare-cycle-01.md</span>   <span class="comment">← DARE cycle write-up</span>
+<span class="key">├── teardowns/</span>
+<span class="val">│   └── product-teardown-01.md</span> <span class="comment">← Your published product analysis</span>
+<span class="key">├── frameworks/</span>
+<span class="val">│   ├── eval-framework.md</span>  <span class="comment">← How you evaluate AI feature quality</span>
+<span class="val">│   └── my-dare-template.md</span><span class="comment">← Your personal DARE cycle template</span>
+<span class="key">└── writing/</span>
+    <span class="val">└── domain-pov.md</span>      <span class="comment">← Your 500-word AI industry POV</span>
+    </div>
+
+    <h3 class="section-title">Building Credibility Without a Title</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Publish one AI product teardown per month</strong><span>Consistent, public, opinionated analysis builds a reputation faster than any title.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Contribute to open-source AI tools you use</strong><span>Even documentation improvements. Shows technical fluency and community engagement.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Do one public DARE cycle on a real product problem</strong><span>Document it from conviction to signal. Tag the company. People notice.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Get specific about your domain</strong><span>"AI PM" is too broad. "AI PM focused on developer tools" is a positioning statement.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Build in public, not in stealth</strong><span>The act of sharing your process is more credibility-building than the artifact itself.</span></div></li>
+    </ul>
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(5)">← Chapter 05</button>
+    <button class="nav-btn primary" onclick="showChapter(7)">Chapter 07: Landing the Role →</button>
+  </div>
+</div>
+
+<!-- ────────────────────────────────────────
+     CHAPTER 7: LANDING THE ROLE
+──────────────────────────────────────── -->
+<div class="chapter" id="ch7">
+  <div class="chapter-body">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Chapter 07</div>
+      <h1 class="chapter-title">Landing the<br/>AI PM Role</h1>
+      <p class="chapter-desc">The AI PM interview is unlike any other PM interview. You'll be tested on technical fluency, product judgment, and how you think about uncertainty. Prepare for all three.</p>
+    </div>
+
+    <h3 class="section-title">Resume Positioning</h3>
+
+    <div class="template-box">
+      <div class="template-label">AI PM Resume Formula — Per Role Entry</div>
+      <div class="template-field"><label>Impact Line (Required)</label><div class="fill">"Led [AI capability] for [product], resulting in [measurable outcome] for [user segment]."</div></div>
+      <div class="template-field"><label>Method Line (Required)</label><div class="fill">"Applied [DARE/ALIGN/specific method] to reduce [time-to-signal/delivery lag] by [X]%."</div></div>
+      <div class="template-field"><label>Collaboration Line (Optional but powerful)</label><div class="fill">"Partnered with [data science/eng] to define eval framework for [AI feature], achieving [metric]."</div></div>
+      <div class="template-field"><label>What NOT to Write</label><div class="fill">❌ "Worked on AI features" ❌ "Used ChatGPT to improve productivity" ❌ "Collaborated with stakeholders"</div></div>
+    </div>
+
+    <h3 class="section-title">The AI PM Interview Loop</h3>
+    <table class="comp-table">
+      <thead><tr><th>Round</th><th>What They're Testing</th><th>Your Preparation</th></tr></thead>
+      <tbody>
+        <tr><td>Recruiter Screen</td><td>Do you speak AI fluently without faking it?</td><td>Master the vocabulary cheat sheet from Ch.01. Use concepts accurately, not impressively.</td></tr>
+        <tr><td>Product Sense</td><td>Can you identify good AI product opportunities?</td><td>Prepare 3 AI product critiques + 1 AI feature you'd add to a known product with DARE reasoning.</td></tr>
+        <tr><td>Technical Bar</td><td>Can you work with engineers without slowing them down?</td><td>Walk through one real AI feature you built/shipped. Explain the trade-offs you made.</td></tr>
+        <tr><td>Execution / Case</td><td>Can you handle ambiguity and make decisions fast?</td><td>Use DARE or ALIGN as your framework in case responses. Show the structure explicitly.</td></tr>
+        <tr><td>Leadership / XFN</td><td>Can you align stakeholders without authority?</td><td>Prepare one story per stakeholder type from Ch.05. Lead with the conflict, not the resolution.</td></tr>
+        <tr><td>Hiring Manager</td><td>Do you have a genuine point of view on AI product?</td><td>Prepare your 2-minute "AI product thesis." What do you believe that most PMs don't?</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="section-title">The 10 Questions You Must Nail</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"Tell me about an AI feature you shipped or built."</strong><span>Lead with the eval criteria you set, not the feature. Shows maturity.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"How do you measure the quality of an AI feature?"</strong><span>Answer with a specific eval framework. Never say "user satisfaction" without a measurement method.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"What's the biggest risk in the AI product you're most excited about?"</strong><span>Show you can see risk clearly, not just opportunity. This is rare.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"Walk me through how you'd prioritize AI features on a roadmap."</strong><span>Use a framework: signal quality × implementation cost × strategic fit. Show the trade-offs explicitly.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"How do you work with data scientists?"</strong><span>Specific story. Show you speak their language — evals, model trade-offs, feasibility ranges.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"What would you NOT build with AI?"</strong><span>This is a judgment test. Have a strong, defensible answer. Weak answer = no conviction.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"How do you handle a hallucinating AI feature post-launch?"</strong><span>Incident response mindset: detect, contain, communicate, fix, prevent. Know the order.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"What's your take on vibe coding's impact on PM?"</strong><span>This is a values question. Don't hedge. Have a real POV. Reference DARE or ALIGN.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"How would you explain a model's limitations to a non-technical exec?"</strong><span>Practice a 90-second explanation. Use an analogy. Never use jargon.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>"What would you build in your first 30 days?"</strong><span>Answer with a question first: "Can I understand the current signal backlog before I commit?" Shows judgment.</span></div></li>
+    </ul>
+
+    <div class="callout green">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body"><strong>The Final Word</strong>The AI PM who gets hired is not the most technical person in the room. It's the person who combines genuine product judgment with enough AI fluency to earn engineering trust — and enough stakeholder intelligence to move fast inside the organization. That combination is still rare. This playbook is how you become it.</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-label">Final Exercise</div>
+      <h4>Your AI PM Thesis Statement</h4>
+      <p>Before your first interview, complete this sentence and commit to it:</p>
+      <div class="code-block">
+<span class="comment">// Your AI PM Thesis — to be said in under 2 minutes</span>
+
+<span class="str">"I believe that AI will [your specific view of AI's impact on your target domain]."</span>
+
+<span class="str">"Most PMs in this space are focused on [common mistake/focus]. I think the real opportunity is [your contrarian or undervalued insight]."</span>
+
+<span class="str">"The way I work — using [DARE/ALIGN] — means I can [specific capability/speed/quality advantage]."</span>
+
+<span class="str">"The product I'm most excited to build is [specific, domain-grounded idea] because [user insight that most people miss]."</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="chapter-nav">
+    <button class="nav-btn" onclick="showChapter(6)">← Chapter 06</button>
+    <button class="nav-btn primary" onclick="showChapter(0)">↺ Back to README</button>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── STATE ──
+let currentChapter = 0;
+let currentPath = 'trad';
+const totalChapters = 8;
+let visited = new Set([0]);
+
+// ── NAVIGATION ──
+function showChapter(n) {
+  document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+  document.getElementById('ch' + n).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach((el, i) => {
+    el.classList.toggle('active', i === n);
+  });
+
+  currentChapter = n;
+  visited.add(n);
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── PATH ──
+function setPath(path) {
+  currentPath = path;
+  document.querySelectorAll('.path-btn').forEach(btn => btn.classList.remove('active-path'));
+  if (path === 'trad') {
+    document.querySelectorAll('.path-btn')[0].classList.add('active-path');
+  } else {
+    document.querySelectorAll('.path-btn')[1].classList.add('active-path');
+  }
+}
+
+// ── PROGRESS ──
+function updateProgress() {
+  const pct = Math.round((visited.size / totalChapters) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = visited.size + ' of ' + totalChapters + ' chapters read';
+}
+
+// ── CHECKLIST ──
+function toggleCheck(li) {
+  li.classList.toggle('done');
+}
+
+// ── INIT ──
+updateProgress();
+</script>
+</body>
+</html>
