@@ -793,6 +793,174 @@ p strong { color: var(--text-bright); }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
 .nav-btn:disabled:hover { border-color: var(--border2); color: var(--text); }
 
+/* VOCAB TABLE */
+  .vocab-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  .vocab-table thead tr { background: var(--surface); }
+  .vocab-table thead th {
+    padding: 10px 16px;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .vocab-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+  .vocab-table tbody tr:hover { background: var(--surface); }
+  .vocab-table td { padding: 11px 16px; vertical-align: middle; line-height: 1.5; }
+  .vocab-table td:first-child {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--blue);
+    border-right: 1px solid var(--border);
+    width: 28%;
+    white-space: nowrap;
+  }
+  .vocab-table td:last-child { font-size: 13.5px; color: var(--text); }
+
+  /* FLOW DIAGRAM */
+  .flow-section { margin: 20px 0; }
+  .flow-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .flow-label.old { color: var(--red);   background: var(--red-dim);   border: 1px solid rgba(240,80,80,0.3);  }
+  .flow-label.new { color: var(--green); background: var(--green-dim); border: 1px solid rgba(0,217,126,0.3); }
+  .flow-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    padding-left: 2px;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .flow-node {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  .flow-node.actor  { background: var(--surface); border: 1px solid var(--border2); color: var(--text-bright); font-weight: 600; }
+  .flow-node.action { background: var(--blue-dim);   border: 1px solid rgba(61,142,240,0.25); color: var(--blue); }
+  .flow-node.action.amber { background: var(--amber-dim); border-color: rgba(240,160,48,0.25); color: var(--amber); }
+  .flow-node.result { background: var(--green-dim); border: 1px solid rgba(0,217,126,0.25); color: var(--green); font-weight: 500; }
+  .flow-arrow { color: var(--text-dim); font-family: var(--mono); font-size: 14px; }
+  .flow-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* THESIS CARDS */
+  .thesis-cards { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+  .thesis-card {
+    border: 1px dashed var(--border2);
+    border-radius: 8px;
+    padding: 16px 18px;
+    background: var(--surface);
+  }
+  .thesis-card-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+  .thesis-card-prompt {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .thesis-card-prompt .fill-in {
+    color: var(--amber);
+    font-style: italic;
+    background: var(--amber-dim);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+/* 30-60-90 TIMELINE */
+  .plan-phase {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  .phase-pill.p1 { background: var(--blue-dim);  color: var(--blue);  border: 1px solid rgba(61,142,240,0.3); }
+  .phase-pill.p2 { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(240,160,48,0.3); }
+  .phase-pill.p3 { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,217,126,0.3);  }
+  .phase-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+  .phase-rows { padding: 4px 0; }
+  .phase-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-row:last-child { border-bottom: none; }
+  .week-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    padding: 12px 16px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    letter-spacing: 0.03em;
+  }
+  .week-task {
+    font-size: 13.5px;
+    color: var(--text);
+    padding: 12px 18px;
+    line-height: 1.55;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .week-task::before {
+    content: '→';
+    font-family: var(--mono);
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
 /* BADGE ROW */
 .badge-row {
   display: flex;
@@ -960,20 +1128,21 @@ p strong { color: var(--text-bright); }
     </div>
 
     <h3 class="section-title">The AI PM Vocabulary Cheat Sheet</h3>
-    <div class="code-block">
-<span class="comment">// Words you need to use correctly in every meeting</span>
-
-<span class="key">Prompt</span>      → <span class="val">Input you give the model</span>
-<span class="key">Completion</span>  → <span class="val">Output the model generates</span>
-<span class="key">Temperature</span> → <span class="val">Randomness dial (0 = deterministic, 1 = creative)</span>
-<span class="key">Grounding</span>   → <span class="val">Connecting model output to verified data sources</span>
-<span class="key">System Prompt</span> → <span class="val">Hidden instructions that shape model behavior</span>
-<span class="key">Few-shot</span>    → <span class="val">Giving examples in your prompt to guide output format</span>
-<span class="key">Chain-of-thought</span> → <span class="val">Prompting the model to reason step by step</span>
-<span class="key">Guardrails</span>  → <span class="val">Safety checks that filter harmful inputs/outputs</span>
-<span class="key">Latency P50/P99</span> → <span class="val">Response time for 50% / 99% of requests</span>
-<span class="key">A/B eval</span>    → <span class="val">Comparing two model outputs to determine which is better</span>
-    </div>
+    <table class="vocab-table">
+      <thead><tr><th>Term</th><th>What it means — use it correctly in every meeting</th></tr></thead>
+      <tbody>
+        <tr><td>Prompt</td><td>Input you give the model</td></tr>
+        <tr><td>Completion</td><td>Output the model generates</td></tr>
+        <tr><td>Temperature</td><td>Randomness dial — 0 = deterministic, 1 = creative</td></tr>
+        <tr><td>Grounding</td><td>Connecting model output to verified data sources</td></tr>
+        <tr><td>System Prompt</td><td>Hidden instructions set by the developer that shape model behavior before the user speaks</td></tr>
+        <tr><td>Few-shot</td><td>Giving the model examples inside your prompt to guide output format or tone</td></tr>
+        <tr><td>Chain-of-thought</td><td>Prompting the model to reason step by step before giving a final answer</td></tr>
+        <tr><td>Guardrails</td><td>Safety checks that filter harmful or off-topic inputs and outputs</td></tr>
+        <tr><td>Latency P50 / P99</td><td>Response time for 50% of requests (typical) and 99% of requests (worst-case)</td></tr>
+        <tr><td>A/B eval</td><td>Comparing two model outputs side-by-side to determine which is better — your primary quality tool</td></tr>
+      </tbody>
+    </table>
 
     <h3 class="section-title">Before You Build Any AI Feature — Checklist</h3>
     <ul class="checklist" id="ch1-check">
@@ -1042,39 +1211,57 @@ p strong { color: var(--text-bright); }
     <h3 class="section-title">30-60-90 Day Plans</h3>
 
     <h4 class="sub-title">Path A · Traditional PM Transition</h4>
-    <div class="code-block">
-<span class="tag">## Days 1–30: Audit &amp; Unlearn</span>
-<span class="key">Week 1–2</span>  → <span class="val">Complete AI/ML Foundations chapter. Take fast.ai or DeepLearning.AI short course.</span>
-<span class="key">Week 2–3</span>  → <span class="val">Audit your current role. List every task AI can now do in &lt;10 mins that took you hours.</span>
-<span class="key">Week 3–4</span>  → <span class="val">Identify one live AI initiative at your company. Embed yourself in it. Ask to co-own one decision.</span>
 
-<span class="tag">## Days 31–60: Build Credibility</span>
-<span class="key">Week 5–6</span>  → <span class="val">Prototype one AI feature using vibe coding tools (Claude Code, Cursor). It doesn't need to be perfect.</span>
-<span class="key">Week 6–7</span>  → <span class="val">Run a DARE cycle on a small, low-stakes product bet. Document the process.</span>
-<span class="key">Week 7–8</span>  → <span class="val">Present your AI feature prototype + DARE cycle results to your product lead.</span>
-
-<span class="tag">## Days 61–90: Position &amp; Transition</span>
-<span class="key">Week 9–10</span> → <span class="val">Update your brag doc with AI-specific wins. Frame them in outcomes, not activities.</span>
-<span class="key">Week 10–11</span>→ <span class="val">Start targeting AI PM roles internally first. Internal transitions are 3x faster than external.</span>
-<span class="key">Week 11–12</span>→ <span class="val">Begin portfolio building (Chapter 06) and interview prep (Chapter 07).</span>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p1">Days 1–30</span><span class="phase-title">Audit &amp; Unlearn</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 1–2</span><span class="week-task">Complete AI/ML Foundations chapter. Take fast.ai or DeepLearning.AI short course.</span></div>
+        <div class="phase-row"><span class="week-label">Week 2–3</span><span class="week-task">Audit your current role. List every task AI can now do in under 10 mins that took you hours.</span></div>
+        <div class="phase-row"><span class="week-label">Week 3–4</span><span class="week-task">Identify one live AI initiative at your company. Embed yourself in it. Ask to co-own one decision.</span></div>
+      </div>
+    </div>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p2">Days 31–60</span><span class="phase-title">Build Credibility</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 5–6</span><span class="week-task">Prototype one AI feature using vibe coding tools (Claude Code, Cursor). It doesn't need to be perfect.</span></div>
+        <div class="phase-row"><span class="week-label">Week 6–7</span><span class="week-task">Run a DARE cycle on a small, low-stakes product bet. Document the process.</span></div>
+        <div class="phase-row"><span class="week-label">Week 7–8</span><span class="week-task">Present your AI feature prototype + DARE cycle results to your product lead.</span></div>
+      </div>
+    </div>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p3">Days 61–90</span><span class="phase-title">Position &amp; Transition</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 9–10</span><span class="week-task">Update your brag doc with AI-specific wins. Frame them in outcomes, not activities.</span></div>
+        <div class="phase-row"><span class="week-label">Week 10–11</span><span class="week-task">Start targeting AI PM roles internally first. Internal transitions are 3x faster than external.</span></div>
+        <div class="phase-row"><span class="week-label">Week 11–12</span><span class="week-task">Begin portfolio building (Chapter 06) and interview prep (Chapter 07).</span></div>
+      </div>
     </div>
 
     <h4 class="sub-title">Path B · New Grad Entry</h4>
-    <div class="code-block">
-<span class="tag">## Days 1–30: Build in Public</span>
-<span class="key">Week 1–2</span>  → <span class="val">Build a small AI product (not just a wrapper). Use it to solve a real problem you have.</span>
-<span class="key">Week 2–3</span>  → <span class="val">Write a post-mortem of building it: what worked, what failed, what you'd change.</span>
-<span class="key">Week 3–4</span>  → <span class="val">Publish it. LinkedIn, Substack, GitHub — doesn't matter where. The act of publishing is the credential.</span>
 
-<span class="tag">## Days 31–60: Go Deep in One Domain</span>
-<span class="key">Week 5–6</span>  → <span class="val">Pick one vertical (fintech, health, devtools, edtech). Learn the regulatory + competitive landscape.</span>
-<span class="key">Week 6–7</span>  → <span class="val">Map 10 AI companies in that vertical. Analyze one product per week: what's the AI doing, is it working?</span>
-<span class="key">Week 7–8</span>  → <span class="val">Write a product teardown of one AI feature. Publish it. Tag the company's PM team.</span>
-
-<span class="tag">## Days 61–90: Get in the Room</span>
-<span class="key">Week 9–10</span> → <span class="val">Apply to APM programs at AI-native companies. Prepare your portfolio (Chapter 06).</span>
-<span class="key">Week 10–11</span>→ <span class="val">Do 10 informational interviews with working AI PMs. Ask about day 1 mistakes, not career paths.</span>
-<span class="key">Week 11–12</span>→ <span class="val">Practice the AI PM interview loop (Chapter 07). Ship your portfolio MVP.</span>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p1">Days 1–30</span><span class="phase-title">Build in Public</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 1–2</span><span class="week-task">Build a small AI product (not just a wrapper). Use it to solve a real problem you have.</span></div>
+        <div class="phase-row"><span class="week-label">Week 2–3</span><span class="week-task">Write a post-mortem of building it: what worked, what failed, what you'd change.</span></div>
+        <div class="phase-row"><span class="week-label">Week 3–4</span><span class="week-task">Publish it. LinkedIn, Substack, GitHub — doesn't matter where. The act of publishing is the credential.</span></div>
+      </div>
+    </div>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p2">Days 31–60</span><span class="phase-title">Go Deep in One Domain</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 5–6</span><span class="week-task">Pick one vertical (fintech, health, devtools, edtech). Learn the regulatory and competitive landscape.</span></div>
+        <div class="phase-row"><span class="week-label">Week 6–7</span><span class="week-task">Map 10 AI companies in that vertical. Analyze one product per week: what's the AI doing, is it working?</span></div>
+        <div class="phase-row"><span class="week-label">Week 7–8</span><span class="week-task">Write a product teardown of one AI feature. Publish it. Tag the company's PM team.</span></div>
+      </div>
+    </div>
+    <div class="plan-phase">
+      <div class="phase-header"><span class="phase-pill p3">Days 61–90</span><span class="phase-title">Get in the Room</span></div>
+      <div class="phase-rows">
+        <div class="phase-row"><span class="week-label">Week 9–10</span><span class="week-task">Apply to APM programs at AI-native companies. Prepare your portfolio (Chapter 06).</span></div>
+        <div class="phase-row"><span class="week-label">Week 10–11</span><span class="week-task">Do 10 informational interviews with working AI PMs. Ask about day 1 mistakes, not career paths.</span></div>
+        <div class="phase-row"><span class="week-label">Week 11–12</span><span class="week-task">Practice the AI PM interview loop (Chapter 07). Ship your portfolio MVP.</span></div>
+      </div>
     </div>
 
     <div class="callout amber">
@@ -1220,16 +1407,50 @@ p strong { color: var(--text-bright); }
     <h3 class="section-title">The Vibe Coding Collaboration Model</h3>
     <p>With vibe coding, the PM-engineer relationship is changing from a handoff model to a co-build model. Here's what that looks like in practice:</p>
 
-    <div class="code-block">
-<span class="comment">// Old Model (Handoff)</span>
-<span class="key">PM</span>       → <span class="str">writes PRD</span>  → <span class="key">Design</span> → <span class="str">mockups</span> → <span class="key">Eng</span> → <span class="str">builds</span>
-<span class="comment">// Time: 3-6 weeks before first line of production code</span>
-
-<span class="comment">// New Model (Co-build)</span>
-<span class="key">PM + Eng</span>  → <span class="str">shared prompt session</span> → <span class="val">working prototype in hours</span>
-<span class="key">PM</span>        → <span class="str">vibe-codes the UX shell</span> → <span class="val">eng wires in real logic</span>
-<span class="key">Both</span>      → <span class="str">deploy to 10 users same day</span> → <span class="val">read signal together</span>
-<span class="comment">// Time: 48 hours from idea to signal</span>
+    <div class="flow-section">
+      <span class="flow-label old">Old Model — Handoff</span>
+      <div class="flow-time">⏱ 3–6 weeks before first line of production code</div>
+      <div class="flow-row">
+        <span class="flow-node actor">PM</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action amber">writes PRD</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node actor">Design</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action amber">mockups</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node actor">Eng</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action amber">builds</span>
+      </div>
+    </div>
+    <hr class="flow-divider"/>
+    <div class="flow-section">
+      <span class="flow-label new">New Model — Co-build</span>
+      <div class="flow-time">⚡ 48 hours from idea to signal</div>
+      <div class="flow-row">
+        <span class="flow-node actor">PM + Eng</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action">shared prompt session</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node result">working prototype in hours</span>
+      </div>
+      <div class="flow-row">
+        <span class="flow-node actor">PM</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action">vibe-codes the UX shell</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node actor">Eng</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action">wires in real logic</span>
+      </div>
+      <div class="flow-row">
+        <span class="flow-node actor">Both</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node action">deploy to 10 users same day</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node result">read signal together</span>
+      </div>
     </div>
 
     <h4 class="sub-title">Prompting as Product Thinking — 5 Rules</h4>
@@ -1432,16 +1653,23 @@ p strong { color: var(--text-bright); }
       <div class="exercise-label">Final Exercise</div>
       <h4>Your AI PM Thesis Statement</h4>
       <p>Before your first interview, complete this sentence and commit to it:</p>
-      <div class="code-block">
-<span class="comment">// Your AI PM Thesis — to be said in under 2 minutes</span>
-
-<span class="str">"I believe that AI will [your specific view of AI's impact on your target domain]."</span>
-
-<span class="str">"Most PMs in this space are focused on [common mistake/focus]. I think the real opportunity is [your contrarian or undervalued insight]."</span>
-
-<span class="str">"The way I work — using [DARE/ALIGN] — means I can [specific capability/speed/quality advantage]."</span>
-
-<span class="str">"The product I'm most excited to build is [specific, domain-grounded idea] because [user insight that most people miss]."</span>
+      <div class="thesis-cards">
+        <div class="thesis-card">
+          <div class="thesis-card-label">Line 1 — Your conviction</div>
+          <div class="thesis-card-prompt">"I believe that AI will <span class="fill-in">[your specific view of AI's impact on your target domain]</span>."</div>
+        </div>
+        <div class="thesis-card">
+          <div class="thesis-card-label">Line 2 — Your contrarian take</div>
+          <div class="thesis-card-prompt">"Most PMs in this space are focused on <span class="fill-in">[common mistake or misplaced priority]</span>. I think the real opportunity is <span class="fill-in">[your undervalued insight]</span>."</div>
+        </div>
+        <div class="thesis-card">
+          <div class="thesis-card-label">Line 3 — Your working advantage</div>
+          <div class="thesis-card-prompt">"The way I work — using <span class="fill-in">[DARE / ALIGN]</span> — means I can <span class="fill-in">[specific speed, quality, or judgment advantage]</span>."</div>
+        </div>
+        <div class="thesis-card">
+          <div class="thesis-card-label">Line 4 — Your product ambition</div>
+          <div class="thesis-card-prompt">"The product I'm most excited to build is <span class="fill-in">[specific, domain-grounded idea]</span> because <span class="fill-in">[user insight that most people miss]</span>."</div>
+        </div>
       </div>
     </div>
 
