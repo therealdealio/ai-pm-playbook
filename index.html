@@ -985,6 +985,162 @@ p strong { color: var(--text-bright); }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* AGENT MONITOR BLOCK */
+.agent-monitor-block {
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+.agent-monitor-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+}
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 640px) { .ba-grid { grid-template-columns: 1fr; } }
+.ba-col {
+  padding: 16px 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.ba-col:first-child { border-right: 1px solid var(--border); }
+.ba-col.after { background: rgba(0,0,0,0.15); }
+.ba-col-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.agent-terminal {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 16px 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.agent-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.agent-dot { width: 8px; height: 8px; border-radius: 50%; }
+.agent-dot.red    { background: var(--red);   }
+.agent-dot.amber  { background: var(--amber); }
+.agent-dot.green  { background: var(--green); }
+.agent-terminal-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-left: 4px;
+}
+.agent-log-line { color: var(--text); display: block; }
+.agent-log-line .tag-green  { color: var(--green); }
+.agent-log-line .tag-blue   { color: var(--blue);  }
+.agent-log-line .tag-amber  { color: var(--amber); }
+.agent-log-line .tag-red    { color: var(--red);   }
+.agent-actions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.agent-action-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--blue);
+  cursor: default;
+}
+
+/* CASE STUDY CARD */
+.case-study-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 10px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.case-study-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.case-study-title {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+}
+.stage-row {
+  margin: 14px 0;
+  padding: 14px;
+  background: var(--surface);
+  border-radius: 6px;
+  border-left: 2px solid var(--border2);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.stage-row strong {
+  color: var(--text-bright);
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.stage-row .handoff {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 10px;
+  font-style: italic;
+}
+.case-study-outcome {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 500;
+}
 </style>
 </head>
 <body>
@@ -1304,8 +1460,14 @@ p strong { color: var(--text-bright); }
       <div class="callout-body"><strong>Which Framework Is Yours?</strong>DARE = You have autonomy to choose what to build. ALIGN = Business leaders hand you the mandate and you execute. Most AI PMs will need both at different points in their career.</div>
     </div>
 
+    <div class="callout green">
+      <div class="callout-icon">⚡</div>
+      <div class="callout-body"><strong>The Core Thesis</strong>In a world where building is nearly free, the quality of your decisions is what matters. DARE and ALIGN are not process frameworks — they are decision frameworks. Every stage is a forcing function for better judgment, not a checklist of activities.</div>
+    </div>
+
+    <!-- ═══════════ DARE ═══════════ -->
     <h3 class="section-title">DARE — For Innovation Teams</h3>
-    <p><strong>Intellectual lineage:</strong> Eric Ries's Build-Measure-Learn loop (Lean Startup) + MLOps continuous feedback cycles. DARE applies these to PM decision-making, not just engineering.</p>
+    <p><strong>Intellectual lineage:</strong> Eric Ries's Build-Measure-Learn loop (Lean Startup) + MLOps continuous feedback cycles. The core insight: in traditional product management, building was expensive, so you researched first. In AI-native product management, <em>building is nearly free</em> — so the constraint shifts from "can we build it?" to "are we building the right thing?" DARE is a decision system for that environment.</p>
 
     <div class="framework-block">
       <div class="framework-header"><h4>The DARE Framework</h4><span class="fw-tag dare">Innovation PM</span></div>
@@ -1318,16 +1480,170 @@ p strong { color: var(--text-bright); }
       </div>
     </div>
 
+    <h3 class="section-title">DARE Stage Deep-Dives</h3>
+
+    <h4 class="sub-title">D — Decide First</h4>
+    <p><strong>What it replaces:</strong> The traditional discovery sprint — 3–6 weeks of user interviews before committing to a direction. In AI-native environments, building is cheap enough that conviction should come first and validation should follow immediately. You're not skipping research; you're sequencing it differently.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Write your conviction bet in one sentence before opening any research tool. The constraint of one sentence forces precision — vague hypotheses produce vague signal.</li>
+      <li>Use AI to synthesize competitive signals and surface contradicting data in under 2 hours. Look specifically for evidence that would <em>kill</em> your hypothesis, not confirm it.</li>
+      <li>Set a decision deadline: by end of business today, you either commit to the hypothesis or kill it. Conviction without a deadline is just an opinion.</li>
+    </ul>
+    <div class="callout green">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Linear Case Study — Stage D</strong>The PM wrote the conviction bet before scheduling a single user interview: "I believe AI can surface the 20% of issues blocking 80% of engineers without any manual tagging." Written, dated, shared with one engineer. The 48-hour clock started the moment the engineer read it.</div>
+    </div>
+
+    <h4 class="sub-title">A — Act Before Ready</h4>
+    <p><strong>What it replaces:</strong> The Define and Design phase — wireframes, specs, design reviews, and the endless hand-off loop. In AI-native teams, the PM and engineer co-build a working surface together. Not a mockup. A working prototype deployed to real users.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Set a 48-hour hard constraint. Whatever exists at hour 48 goes in front of a real user — no extensions, no "just one more thing."</li>
+      <li>PM and engineer co-build in the same session using AI tools. The PM drives the UX logic; the engineer wires in the real backend. No hand-off: one synchronous build session.</li>
+      <li>Define "real user" before the clock starts. Internal team members who know the goal do not count. A real user has no stake in you being right.</li>
+    </ul>
+    <div class="callout green">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Linear Case Study — Stage A</strong>PM and engineer co-built a working prioritization interface in Cursor in one afternoon. No wireframe phase — the working UI was the prototype. Deployed to Linear's own internal engineering team (200+ people with real issues and real deadlines) that same evening. <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);">Automated handoff: DARE Monitor Agent detected the first commit to /triage-ai and silently started the 48-hour stage clock.</span></div>
+    </div>
+
+    <h4 class="sub-title">R — Read at Scale</h4>
+    <p><strong>What it replaces:</strong> Traditional usability testing and manual data analysis. In the AI-native stack, behavioral telemetry runs automatically, an AI agent synthesizes signal daily, and the PM reviews a summary — not raw data. The insight comes faster and is grounded in real behavior, not self-reported preference.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Define your behavioral signal <em>before</em> deployment — not after. What specific action confirms your conviction bet? What action would disprove it?</li>
+      <li>Deploy to a cohort of at least 20 real users with live telemetry from day one. No delayed data collection setups.</li>
+      <li>Let an AI agent synthesize behavioral data daily and flag deviations from your expected signal pattern. Surprises are the signal.</li>
+    </ul>
+    <div class="callout green">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Linear Case Study — Stage R</strong>Telemetry ran for 5 days. The agent's day 3 summary surfaced a clear deviation: engineers were using AI triage for cross-team blockers 3× more than for personal backlog grooming — the opposite of what the conviction bet predicted. <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);">Automated handoff: Agent flagged signal deviation and delivered a draft signal summary to the PM. PM edited two lines, approved, forwarded to engineer. No sprint meeting called.</span></div>
+    </div>
+
+    <h4 class="sub-title">E — Expand or Erase</h4>
+    <p><strong>What it replaces:</strong> The traditional staged launch and GA process — beta programs, launch plans, and high-stakes big reveals. In DARE, every deploy is already live. Expand means doubling down on what's working. Erase means killing clean and logging why.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Define your kill threshold before you launch — a specific metric below which you erase, no negotiation. If you haven't defined it in advance, you'll rationalize staying alive.</li>
+      <li>Expand means: double the cohort, increase investment, and write a 3-sentence "expand brief" stating what signal justified the decision.</li>
+      <li>Erase means: sunset the prototype within 24 hours, write the kill note for the decision log, and redirect the team to the next bet. A PM who kills fast without ego is more valuable than one who rescues weak ideas.</li>
+    </ul>
+    <div class="callout amber">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Linear Case Study — Stage E</strong>Signal was clear: expand, but on a different use case than predicted. PM wrote the expand brief on day 11: doubled the user cohort, redirected scope from personal backlog grooming to cross-team blocker triage. The original conviction bet was wrong — the expansion decision was based entirely on what actually happened.</div>
+    </div>
+
+    <h4 class="sub-title">05 — Own the Outcome</h4>
+    <p><strong>What it replaces:</strong> The sprint retrospective — a team ceremony that's often backward-looking, vague, and disconnected from individual PM accountability. Own the Outcome is a personal accountability loop. You document the bet, the signal, and the verdict — and you share it with your engineer.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>After every DARE cycle, write a 3-sentence outcome entry: the bet, the signal, the verdict. Date it. This is your compound interest.</li>
+      <li>Review your decision log weekly — look for patterns in where your convictions were accurate and where they were wrong. Calibration improves with deliberate review.</li>
+      <li>Share the log with your engineering partner. Transparency about reasoning — not just outcomes — is what builds trust over time.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Linear Case Study — Stage 05</strong>PM wrote the cycle entry: the original bet, the day-3 signal deviation, the scope pivot within Stage R, and the expansion verdict. Shared with the engineer. That decision log entry — showing the conviction, the deviation, and the clean pivot — later became part of Linear's Series C product narrative. A record of quality thinking compounds.</div>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">⚠</div>
+      <div class="callout-body">
+        <strong>DARE Pitfalls — When the Framework Gets Weaponized</strong>
+        <ul style="padding-left:16px; margin:8px 0 0 0; line-height:1.8;">
+          <li><strong style="color:var(--text-bright); font-family:inherit;">Conviction without curiosity.</strong> Decide First does not mean ignore disconfirming signal. Your bet must remain falsifiable — if no evidence could change your mind, you're running confirmation bias, not DARE.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">48 hours as theater.</strong> "We built a prototype in 48 hours" is meaningless if it was shown to internal colleagues who smiled politely. Real user = someone with no stake in you being right.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">The expansion trap.</strong> "Clear signal" does not mean one power user loves it. Define your expansion threshold as a specific metric before you start — otherwise "expand" becomes the default because killing feels like failure.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">Killing without learning.</strong> Erasing is only valuable if you document why. A kill with no written rationale is just a failed launch with extra steps.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="agent-monitor-block" style="border-left-color:var(--green);">
+      <div class="agent-monitor-label">
+        <span style="color:var(--green);">◉</span>&nbsp; DARE Monitor Agent — Automated Stage Intelligence
+      </div>
+      <div class="ba-grid">
+        <div class="ba-col">
+          <div class="ba-col-label">Before — Manual PM</div>
+          PM checks Jira on Friday afternoon to see where each stage stands. Notices Stage 02 has been stuck for three days — no commits, no update from the engineer. Sends a Slack message. Gets a reply the following Monday. Stage 03's user cohort window has now closed.
+        </div>
+        <div class="ba-col after">
+          <div class="ba-col-label">After — DARE Monitor Agent</div>
+          Agent tracks stage duration against 48-hour SLAs in real time. Detects commit drought, cross-references open Slack threads, calculates risk to Stage 03 cohort window. Delivers a draft escalation recommendation to the PM at 7:42 AM — before the PM opens their laptop.
+        </div>
+      </div>
+      <div class="agent-terminal">
+        <div class="agent-terminal-bar">
+          <div class="agent-dot red"></div>
+          <div class="agent-dot amber"></div>
+          <div class="agent-dot green"></div>
+          <span class="agent-terminal-label">DARE Monitor Agent · Checkout Flow Redesign · Tue Mar 17, 07:42 AM</span>
+        </div>
+        <span class="agent-log-line">Stage: <span class="tag-amber">02 — Act Before Ready</span> · Status: <span class="tag-red">OVERRUN (+14 hrs vs 48hr SLA)</span></span>
+        <span class="agent-log-line">Diagnosis: No commits to /checkout-ai in 31 hrs · 3 unresolved Slack threads on API auth</span>
+        <span class="agent-log-line">Risk: <span class="tag-amber">Stage 03 cohort window closes this sprint if not resolved within 12 hrs</span></span>
+        <span class="agent-log-line">Conviction bet still valid · No signal data yet · Stage 02 must close first</span>
+        <span class="agent-log-line">Recommended: <span class="tag-green">Escalate API auth blocker to platform lead · auto-drafted message ready</span></span>
+        <div class="agent-actions">
+          <span class="agent-action-btn">Approve &amp; Send Escalation</span>
+          <span class="agent-action-btn">Edit Draft</span>
+          <span class="agent-action-btn">Dismiss</span>
+        </div>
+      </div>
+    </div>
+
     <h4 class="sub-title">DARE in Practice — Daily Habits</h4>
     <ul class="checklist" id="dare-daily">
       <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Start every week with a written conviction bet</strong><span>One sentence. One hypothesis. What are you trying to prove this week?</span></div></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Kill any prototype that hasn't touched a real user in 5 days</strong><span>Internal polish ≠ progress. Exposure to reality is the only progress metric.</span></div></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Maintain a decision log, not a PRD</strong><span>Every decision: the bet, the signal, the outcome. Reviewed weekly.</span></div></li>
       <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Run a daily demo — not a weekly sprint review</strong><span>If you can build it in a day, you can demo it in a day.</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Run a weekly conviction audit</strong><span>Score your top 3 current bets: which has the strongest signal? Which should you kill?</span></div></li>
+      <li onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label"><strong>Share your decision log with one engineer per week</strong><span>Transparency about reasoning builds faster trust than any 1:1 ever will.</span></div></li>
     </ul>
 
+    <!-- DARE End-to-End Case Study -->
+    <h3 class="section-title">DARE in the Wild — Linear's AI Issue Triage</h3>
+    <div class="case-study-card" style="border-left-color:var(--green);">
+      <div class="case-study-label">End-to-End DARE Case Study · Linear · AI Issue Triage Feature · 2023</div>
+      <div class="case-study-title">From Conviction Bet to Beta in 11 Days</div>
+      <p style="font-size:14px; color:var(--text); margin:12px 0 8px;">Linear builds project management software for engineering teams. In 2023, a PM ran a full DARE cycle on an AI issue triage feature — no discovery sprint, no PRD, one conviction bet and a timer. Here's every stage and every handoff, in order.</p>
+
+      <div class="stage-row">
+        <strong>D — Decide First</strong>
+        PM wrote one conviction bet before any research: "I believe AI can surface the 20% of issues blocking 80% of engineers without any manual tagging." No user research session scheduled. The bet was written, dated, and shared with one engineer. The clock started.
+        <div class="handoff">→ Handoff to A: Conviction bet shared async. Timer starts. No meeting scheduled.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>A — Act Before Ready</strong>
+        PM and engineer co-built a working prioritization interface in Cursor in one afternoon. No wireframe phase — the working UI was the prototype. Deployed to Linear's own internal engineering org (200+ people with real issues and real deadlines) that same evening.
+        <div class="handoff">→ Automated handoff: DARE Monitor Agent detected the first commit to /triage-ai and silently started the 48-hour stage clock. No Slack message sent by anyone.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>R — Read at Scale</strong>
+        Telemetry ran for 5 days. The agent synthesized behavioral data daily. Day 3 finding: engineers were using AI triage for <em>cross-team blockers</em> 3× more than for personal backlog grooming — the opposite of what the conviction bet predicted. The hypothesis was wrong. The signal was clear.
+        <div class="handoff">→ Automated handoff: Agent flagged the signal deviation with a draft signal summary. PM edited two lines, approved, forwarded to engineer. No sprint ceremony called.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>E — Expand or Erase</strong>
+        Signal was clear: expand — but on the use case the data revealed, not the one the PM predicted. PM wrote the expand brief on day 11: doubled the user cohort, redirected scope from personal backlog to cross-team blocker triage. The original conviction was wrong. The expansion decision was right.
+        <div class="handoff">→ Handoff to 05: Expand decision logged with signal summary attached. Agent auto-archived stage telemetry to decision log.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>05 — Own the Outcome</strong>
+        PM wrote the cycle entry: the original bet, the day-3 signal deviation, the scope pivot, the expand verdict. Shared the full log with the engineer — who had lived the same 11 days and deserved to know the PM's complete reasoning, not just the outcome. That decision log entry later became part of Linear's Series C product narrative.
+        <div class="handoff">→ Full cycle: 11 days from conviction bet to beta. Signal-driven scope pivot on day 3, without a single sprint ceremony.</div>
+      </div>
+
+      <div class="case-study-outcome" style="background:var(--green-dim); border:1px solid rgba(0,217,126,0.3); color:var(--green);">
+        Feature shipped as beta 11 days after the conviction bet was written. The scope pivot — from personal backlog grooming to cross-team dependency triage — happened because the PM was reading signal in real time, not waiting for a retrospective to surface it.
+      </div>
+    </div>
+
+    <!-- ═══════════ ALIGN ═══════════ -->
     <h3 class="section-title">ALIGN — For Enterprise Teams</h3>
-    <p><strong>Intellectual lineage:</strong> LLMOps lifecycle management + AgentOps governance principles. ALIGN applies enterprise-grade operational rigor to PM delivery execution.</p>
+    <p><strong>Intellectual lineage:</strong> LLMOps lifecycle management + AgentOps governance principles. ALIGN applies enterprise-grade operational discipline to PM execution in mandate-driven environments. The core insight: in enterprise settings, the PM rarely chooses what to build — a business leader does. The PM's job is to translate a vague mandate into a deliverable outcome, navigate every constraint along the way, and close the loop with language the mandate-giver actually understands.</p>
 
     <div class="framework-block">
       <div class="framework-header"><h4>The ALIGN Framework</h4><span class="fw-tag align">Enterprise PM</span></div>
@@ -1337,6 +1653,116 @@ p strong { color: var(--text-bright); }
         <div class="fw-stage"><div class="fw-stage-label">I</div><div class="fw-stage-name">Iterate Open</div><p>Weekly demos to stakeholders. Make change cheap, not impossible.</p></div>
         <div class="fw-stage"><div class="fw-stage-label">G</div><div class="fw-stage-name">Gate Purposefully</div><p>One owner, one question, 48-hr SLA per gate. No theatre.</p></div>
         <div class="fw-stage"><div class="fw-stage-label">N</div><div class="fw-stage-name">Normalize + Narrate</div><p>Document what shipped. Translate features into business outcomes for leadership.</p></div>
+      </div>
+    </div>
+
+    <h3 class="section-title">ALIGN Stage Deep-Dives</h3>
+
+    <h4 class="sub-title">A — Anchor Intent</h4>
+    <p><strong>Pain it solves:</strong> Vague executive mandates that mutate as the build progresses, causing scope explosion. "Use AI to transform customer experience" can mean 47 different things to 12 different stakeholders. An unsigned, unmeasured mandate is a scope disaster waiting to happen.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Schedule a "mandate excavation" session with the exec before writing a single ticket. Your job is to find the actual outcome they're driving — not the surface request. Ask: "What would have to be true 12 months from now for you to consider this a success?"</li>
+      <li>Write the intent brief using the template below — one page, five fields. The "What This Explicitly Does NOT Include" field is the most important and most often skipped.</li>
+      <li>Get explicit sign-off: email confirmation is sufficient and creates a paper trail. Verbal agreement is not sign-off.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Capital One Case Study — Stage A</strong>C-suite mandate: "Use AI to grow credit revenue." PM ran a mandate excavation session. Intent brief locked the actual outcome: reduce manual credit-line-increase review time by 60% without increasing default rates. Out-of-scope list — signed by the EVP of Credit — explicitly excluded new account origination, fraud review, and collections. A vague mandate became a scoped, measurable deliverable before a single ticket was written.</div>
+    </div>
+
+    <h4 class="sub-title">L — Lay Constraints</h4>
+    <p><strong>Pain it solves:</strong> Discovering regulatory or integration blockers mid-build, after significant engineering investment. In enterprise environments, constraints are everywhere — legal, compliance, security, legacy integration, budget approval chains. Finding them in week 8 is expensive. Finding them in week 1 is strategy.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Map constraints in three categories: hard blockers (will stop the build), soft blockers (add time and cost), and political blockers (require specific people to agree). All three are real constraints.</li>
+      <li>Use AI to surface historical similar projects from your organization's delivery record. Every enterprise has a graveyard of initiatives that hit the same walls. Learn from them before you repeat them.</li>
+      <li>Publish the constraint map to all stakeholders before sprint planning begins. Surprises found here are cheap. Surprises found in QA are career-defining.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Capital One Case Study — Stage L</strong>Constraint mapping identified 9 CFPB fair lending requirements — plus a FCRA adverse action notice requirement no one had flagged. AI surfaced 3 prior internal projects that had hit the same FCRA wall mid-build, each delayed 6–8 weeks as a result. All 9 constraints were logged with owner names and SLA targets before the first sprint began. <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);">Automated handoff: ALIGN Monitor Agent notified each constraint owner via Slack with their specific SLA for resolution.</span></div>
+    </div>
+
+    <h4 class="sub-title">I — Iterate Open</h4>
+    <p><strong>Pain it solves:</strong> Scope shifts triggered mid-build by stakeholders who weren't seeing progress and grew anxious. When executives don't see work happening, they fill the vacuum with new requirements. Weekly demos replace that anxiety with transparency — and make scope changes cheap to surface and cheap to redirect.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Run a live demo every Friday — not a status email, a working demo. Even rough is better than polished slides.</li>
+      <li>Make the demo link permanent and always live. Stakeholders should be able to check progress without scheduling a meeting.</li>
+      <li>When a stakeholder requests a scope change during a demo, acknowledge it live and add it to the parking lot. Respond within 24 hours with a written decision: absorb, defer to Phase 2, or reject with rationale. Never let a scope request sit unacknowledged for more than 24 hours.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Capital One Case Study — Stage I</strong>Weekly live demos to the credit risk committee every Friday. Week 4: a committee member requested adding real-time FICO refresh to the AI model. PM acknowledged it live, added to parking lot, responded in writing within 24 hours: "FICO refresh deferred to Phase 2 — outside intent brief scope. Confirmed with EVP." Scope stayed clean. <span style="font-family:var(--mono);font-size:11px;color:var(--text-dim);">Automated handoff: Agent detected the FICO refresh ticket added to Jira, flagged scope drift, and drafted the deferral stakeholder note. PM approved with one click.</span></div>
+    </div>
+
+    <h4 class="sub-title">G — Gate Purposefully</h4>
+    <p><strong>Pain it solves:</strong> Bureaucratic sign-off processes that consume weeks and add no actual risk management value — committee reviews, approval chains where no one person is accountable, and governance theater that delays launches without improving them. ALIGN gates are fast, accountable, and time-boxed.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Assign one owner per gate — not a committee. One person with a named email address. Committee ownership is no ownership.</li>
+      <li>Define the gate question precisely: "Is the security posture acceptable for a limited-access beta?" — not "does everyone feel good about this?" A precise question gets a clear answer.</li>
+      <li>Set a 48-hour SLA on every gate. If the gate owner doesn't respond in 48 hours, the gate passes by default — unless they explicitly request an extension. This forces accountability, not rubber stamps.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Capital One Case Study — Stage G</strong>3 gates, each with a single named owner and a 48-hour SLA: Legal (deputy general counsel), Model Risk (named model risk officer), Compliance (CCO delegate). Hour 47 of the legal gate: agent auto-sent "Legal gate closes in 1 hour. No response logged — escalate now or gate passes by default." Deputy GC responded within the hour. All 3 gates cleared in 4 business days. Previous equivalent process: 6–8 weeks.</div>
+    </div>
+
+    <h4 class="sub-title">N — Normalize + Narrate</h4>
+    <p><strong>Pain it solves:</strong> Features ship but don't get adopted; engineering teams can't support what they built; leadership doesn't connect the shipped feature to the business outcome they mandated. Normalize creates institutional memory. Narrate closes the loop with the people who funded the work — in their language, not engineering language.</p>
+    <ul style="padding-left:20px; line-height:1.8; font-size:14px; color:var(--text); margin:12px 0 16px;">
+      <li>Normalization: use AI to auto-generate runbook documentation from commit history, tickets, and sprint notes — on the day of launch, not weeks later. The best documentation is the documentation that actually gets written.</li>
+      <li>Narration: write a 1-page Outcome Brief for the exec sponsor using their language — revenue, risk reduction, efficiency — not engineering language (features, endpoints, latency).</li>
+      <li>Present the Outcome Brief in the same meeting where the mandate was originally given. Close the loop explicitly. The exec who gave you the mandate deserves to hear that it was delivered.</li>
+    </ul>
+    <div class="callout blue">
+      <div class="callout-icon">→</div>
+      <div class="callout-body"><strong>From the Capital One Case Study — Stage N</strong>Agent auto-generated runbook documentation on launch day. PM wrote a 1-page Outcome Brief for the EVP: "34% of credit-line-increase reviews resolved without human involvement in the first 30 days. Average review time: 22 minutes, down from 4.2 hours. No increase in default rate." The EVP quoted the brief on the next earnings call. Phase 2 budget approved before Phase 1 had been live 60 days.</div>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">⚠</div>
+      <div class="callout-body">
+        <strong>ALIGN Pitfalls — When Enterprise Process Eats the Framework</strong>
+        <ul style="padding-left:16px; margin:8px 0 0 0; line-height:1.8;">
+          <li><strong style="color:var(--text-bright); font-family:inherit;">The intent brief becomes a PRD.</strong> One page, signed. The moment it becomes a 10-page document, you've replicated what ALIGN was designed to replace. Length is not rigor — it's a warning sign.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">The constraint map becomes an excuse.</strong> "We found 14 blockers" is not a delivery strategy. Every blocker needs an owner and a resolution path before sprint planning starts.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">Iterate Open collapses into death by demo.</strong> Weekly demos create weekly opinions. The PM must be the filter: acknowledge every input, but only incorporate scope changes that support the signed intent brief.</li>
+          <li><strong style="color:var(--text-bright); font-family:inherit;">Gate theater returns through the side door.</strong> ALIGN gates work only if SLAs are enforced. A gate that takes 3 weeks because no one escalated is not an ALIGN gate — it's the old process wearing new clothes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="agent-monitor-block" style="border-left-color:var(--blue);">
+      <div class="agent-monitor-label">
+        <span style="color:var(--blue);">◉</span>&nbsp; ALIGN Monitor Agent — Governance &amp; Scope Intelligence
+      </div>
+      <div class="ba-grid">
+        <div class="ba-col">
+          <div class="ba-col-label">Before — Manual PM</div>
+          PM assembles the Friday status deck from Jira, Confluence, and email threads. Scope creep goes undetected until a sprint review. Leadership gets a polished slide that hides three weeks of drift. Gate SLA has been breached for 8 days — no one escalated.
+        </div>
+        <div class="ba-col after">
+          <div class="ba-col-label">After — ALIGN Monitor Agent</div>
+          Agent tracks intent brief alignment against actual ticket scope in real time. Flags drift the moment it appears. Drafts the executive update in outcome language. Auto-escalates gate SLA breaches before they become blockers. PM reviews a daily briefing instead of assembling one.
+        </div>
+      </div>
+      <div class="agent-terminal">
+        <div class="agent-terminal-bar">
+          <div class="agent-dot red"></div>
+          <div class="agent-dot amber"></div>
+          <div class="agent-dot green"></div>
+          <span class="agent-terminal-label">ALIGN Monitor Agent · Customer Portal Rebuild · Mon Mar 16, 08:15 AM</span>
+        </div>
+        <span class="agent-log-line">Stage: <span class="tag-green">03 — Iterate in the Open</span> · Week 3 of 6 · <span class="tag-green">ON TRACK</span></span>
+        <span class="agent-log-line">Scope Drift: <span class="tag-amber">4 new tickets added outside intent brief scope (+3 engineer-days)</span></span>
+        <span class="agent-log-line">Governance: Security sign-off <span class="tag-red">PENDING 8 days (SLA: 48 hrs) — SLA BREACHED</span></span>
+        <span class="agent-log-line">Leadership Update [auto-drafted]: "Portal rebuild on track for Q2. SSO integration not in original scope — absorb or defer to Phase 2? Security review re-escalated today."</span>
+        <span class="agent-log-line">Risk: <span class="tag-amber">If scope absorbed: +3 engineer-days, likely Q2 slip · Recommend defer</span></span>
+        <div class="agent-actions">
+          <span class="agent-action-btn">Approve &amp; Send Update</span>
+          <span class="agent-action-btn">Re-escalate Security</span>
+          <span class="agent-action-btn">Find Leadership Sync Time</span>
+          <span class="agent-action-btn">Edit Draft</span>
+        </div>
       </div>
     </div>
 
@@ -1350,6 +1776,97 @@ p strong { color: var(--text-bright); }
       <div class="template-field"><label>Signed Off By</label><div class="fill">[Exec name] — [Date] — [Medium: email / meeting / written]</div></div>
     </div>
 
+    <!-- ALIGN End-to-End Case Study -->
+    <h3 class="section-title">ALIGN in the Enterprise — Capital One's AI Credit Feature</h3>
+    <div class="case-study-card" style="border-left-color:var(--blue);">
+      <div class="case-study-label">End-to-End ALIGN Case Study · Capital One · AI Credit Line Increase Feature · 2022–2023</div>
+      <div class="case-study-title">From Vague Mandate to Earnings Call Outcome in 11 Months</div>
+      <p style="font-size:14px; color:var(--text); margin:12px 0 8px;">Capital One's enterprise product team received a C-suite mandate: "Use AI to grow credit revenue." One PM used ALIGN to turn that mandate into a scoped, delivered, narrated outcome — without a single mid-build regulatory surprise, without a scope explosion. Here's every stage and every handoff.</p>
+
+      <div class="stage-row">
+        <strong>A — Anchor Intent</strong>
+        C-suite mandate: "Use AI to grow credit revenue." PM ran a mandate excavation session. Intent brief locked the actual outcome: reduce manual credit-line-increase review time by 60% without increasing default rates. Out-of-scope list — signed by the EVP of Credit — explicitly excluded new account origination, fraud review, and collections. A 3-sentence vague mandate became a 1-page signed brief before a single ticket was written.
+        <div class="handoff">→ Handoff to L: Signed intent brief shared simultaneously with legal, compliance, and model risk. ALIGN Monitor Agent ingested the brief as the immutable scope baseline.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>L — Lay Constraints</strong>
+        Constraint mapping session identified 9 CFPB fair lending requirements, plus a FCRA adverse action notice requirement that no one had flagged. AI surfaced 3 prior internal projects that had hit the same FCRA wall mid-build — all three delayed 6–8 weeks as a result. All constraints logged with named owners before sprint planning.
+        <div class="handoff">→ Automated handoff: Agent notified each constraint owner via Slack with their SLA. Compliance owner: "You are listed as owner for constraint L-04 (CFPB §1002). Resolution path due in 5 business days."</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>I — Iterate Open</strong>
+        Weekly live demos to the credit risk committee every Friday. Week 4: a committee member requested adding real-time FICO refresh to the AI model — a significant scope addition not in the intent brief. PM acknowledged it live. Parking lot. 24-hour written response: "FICO refresh deferred to Phase 2 — outside intent brief scope. Confirmed with EVP." Scope stayed clean.
+        <div class="handoff">→ Automated handoff: Agent detected the FICO refresh ticket added to Jira, flagged scope drift against the intent brief, and drafted the deferral stakeholder note. PM approved with one click.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>G — Gate Purposefully</strong>
+        3 gates, each with a single named owner and a 48-hour SLA. Legal: deputy general counsel. Model Risk: named model risk officer. Compliance: CCO delegate. Hour 47 of the legal gate: agent auto-sent the escalation. "Legal gate closes in 1 hour. No response logged — escalate now or gate passes by default." Deputy GC responded within the hour. All 3 gates cleared in 4 business days vs. the previous 6–8 weeks.
+        <div class="handoff">→ Automated handoff: All gate approvals logged with timestamps. Agent compiled the gate completion record for the compliance audit trail, handed to compliance team on launch day.</div>
+      </div>
+
+      <div class="stage-row">
+        <strong>N — Normalize + Narrate</strong>
+        Agent auto-generated runbook documentation from commit history, sprint notes, and ticket log on launch day. PM wrote the 1-page Outcome Brief for the EVP: "34% of credit-line-increase reviews resolved without human involvement in the first 30 days. Average review time: 22 minutes, down from 4.2 hours. No increase in default rate." Delivered in the same meeting where the original mandate had been given.
+        <div class="handoff">→ Loop closed: EVP quoted the Outcome Brief on the next earnings call. Phase 2 budget approved before Phase 1 had been live 60 days.</div>
+      </div>
+
+      <div class="case-study-outcome" style="background:var(--blue-dim); border:1px solid rgba(61,142,240,0.3); color:var(--blue);">
+        Launched in 11 months vs. the 18-month industry average for comparable regulated financial AI. No mid-build regulatory surprises. No scope explosion. Mandate delivered, closed, and funded for Phase 2 — because the PM could narrate the outcome in the exec's own language.
+      </div>
+    </div>
+
+    <!-- DARE vs. ALIGN Comparison Table -->
+    <h3 class="section-title">DARE vs. ALIGN — Which One Is Yours?</h3>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Signal</th>
+          <th class="t-green">DARE — Innovation PM</th>
+          <th class="t-blue">ALIGN — Enterprise PM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Demand Source</td>
+          <td>You decide what to build</td>
+          <td>Business leaders hand you the mandate</td>
+        </tr>
+        <tr>
+          <td>Team Type</td>
+          <td>Innovation squad, startup, growth team</td>
+          <td>Enterprise delivery team, platform PM</td>
+        </tr>
+        <tr>
+          <td>Biggest Risk</td>
+          <td>Building the wrong thing entirely</td>
+          <td>Building the right thing too slowly</td>
+        </tr>
+        <tr>
+          <td>Governance</td>
+          <td>Minimal — move fast, kill fast</td>
+          <td>Real — navigate it intelligently</td>
+        </tr>
+        <tr>
+          <td>Scope Ownership</td>
+          <td>PM owns problem and solution</td>
+          <td>PM owns execution, not the mandate</td>
+        </tr>
+        <tr>
+          <td>AI's Role</td>
+          <td>Co-builder and behavioral signal parser</td>
+          <td>Constraint mapper, scope monitor, outcome narrator</td>
+        </tr>
+        <tr>
+          <td>Success Looks Like</td>
+          <td>A validated bet that compounds</td>
+          <td>A mandate delivered that earns the next one</td>
+        </tr>
+      </tbody>
+    </table>
+
     <div class="exercise">
       <div class="exercise-label">Exercise 3.1</div>
       <h4>Run a DARE Cycle on a Real Problem</h4>
@@ -1359,6 +1876,18 @@ p strong { color: var(--text-bright); }
         <li><strong>R:</strong> Deploy or share with 5 real people. Record raw reactions — don't interpret yet.</li>
         <li><strong>E:</strong> Decision: expand or erase? Write your reasoning in 3 sentences.</li>
         <li><strong>Own it:</strong> Log this entire cycle in your decision log. Date it. You'll reference it in your interview.</li>
+      </ol>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-label">Exercise 3.2</div>
+      <h4>The Mandate Excavation — Run ALIGN Stage A on a Real Mandate</h4>
+      <ol>
+        <li><strong>Find a real mandate.</strong> Identify something a leader in your organization has asked a product team to build — a current ask, a recent project, or something from your own backlog.</li>
+        <li><strong>Write it in their exact words.</strong> Use the verbatim mandate, not your interpretation of it. This is harder than it sounds.</li>
+        <li><strong>Translate it.</strong> Use the intent brief template above to write the actual outcome being driven. What would have to be true 12 months from now for this to be considered a success?</li>
+        <li><strong>Map 3 constraints.</strong> Identify one hard blocker, one soft blocker, and one political blocker. Find one that most PMs on your team would miss.</li>
+        <li><strong>Write the "What this does NOT include" field.</strong> List 3 things the mandate-giver might assume are in scope but aren't. Share it with them and see if they push back — their reaction tells you more about the real scope than any discovery session.</li>
       </ol>
     </div>
   </div>
